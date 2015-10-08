@@ -1,23 +1,34 @@
 //
-//  YFMessageController.swift
-//  MyWiBo
+//  YFBaseTableViewController.swift
+//  MyWeiBoo
 //
-//  Created by 李永方 on 15/10/7.
+//  Created by 李永方 on 15/10/8.
 //  Copyright © 2015年 李永方. All rights reserved.
 //
 
 import UIKit
 
-class YFMessageController: YFBaseTableViewController {
-
+class YFBaseTableViewController: UITableViewController {
+    
+    //设置用户登录标记
+    var userLogon = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 根据用户是否登录判断是否替换根式图
+        userLogon ? super.loadView() : setupVisitorView()
+        
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+            }
+    /**
+    设置访客视图
+    */
+    
+    private func setupVisitorView(){
+    
+        view = UIView()
+        view.backgroundColor = UIColor.redColor()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {

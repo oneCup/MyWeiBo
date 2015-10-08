@@ -13,9 +13,11 @@
 		1C3EE6201BC659960069BF55 /* MyWeiBooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */; };
 		1C3EE63B1BC660DA0069BF55 /* YFDiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6321BC660DA0069BF55 /* YFDiscoverController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C3EE63C1BC660DA0069BF55 /* YFHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6341BC660DA0069BF55 /* YFHomeController.swift */; settings = {ASSET_TAGS = (); }; };
-		1C3EE63D1BC660DA0069BF55 /* YFMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6361BC660DA0069BF55 /* YFMainController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C3EE63E1BC660DA0069BF55 /* YFMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6381BC660DA0069BF55 /* YFMessageController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C3EE63F1BC660DA0069BF55 /* YFProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE63A1BC660DA0069BF55 /* YFProfileController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE6431BC6801E0069BF55 /* YFMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6421BC6801E0069BF55 /* YFMainController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE6451BC6803F0069BF55 /* YFBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6441BC6803F0069BF55 /* YFBaseTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE6471BC680640069BF55 /* YFBaseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6461BC680640069BF55 /* YFBaseView.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,9 +50,11 @@
 		1C3EE6211BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C3EE6321BC660DA0069BF55 /* YFDiscoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFDiscoverController.swift; sourceTree = "<group>"; };
 		1C3EE6341BC660DA0069BF55 /* YFHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFHomeController.swift; sourceTree = "<group>"; };
-		1C3EE6361BC660DA0069BF55 /* YFMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMainController.swift; sourceTree = "<group>"; };
 		1C3EE6381BC660DA0069BF55 /* YFMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMessageController.swift; sourceTree = "<group>"; };
 		1C3EE63A1BC660DA0069BF55 /* YFProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFProfileController.swift; sourceTree = "<group>"; };
+		1C3EE6421BC6801E0069BF55 /* YFMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMainController.swift; sourceTree = "<group>"; };
+		1C3EE6441BC6803F0069BF55 /* YFBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFBaseTableViewController.swift; sourceTree = "<group>"; };
+		1C3EE6461BC680640069BF55 /* YFBaseView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = YFBaseView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +186,9 @@
 		1C3EE6351BC660DA0069BF55 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1C3EE6361BC660DA0069BF55 /* YFMainController.swift */,
+				1C3EE6421BC6801E0069BF55 /* YFMainController.swift */,
+				1C3EE6441BC6803F0069BF55 /* YFBaseTableViewController.swift */,
+				1C3EE6461BC680640069BF55 /* YFBaseView.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 		1C3EE5F41BC659960069BF55 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YF;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "李永方";
 				TargetAttributes = {
@@ -307,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C3EE6071BC659960069BF55 /* Assets.xcassets in Resources */,
+				1C3EE6471BC680640069BF55 /* YFBaseView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,8 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C3EE6431BC6801E0069BF55 /* YFMainController.swift in Sources */,
 				1C3EE63C1BC660DA0069BF55 /* YFHomeController.swift in Sources */,
-				1C3EE63D1BC660DA0069BF55 /* YFMainController.swift in Sources */,
+				1C3EE6451BC6803F0069BF55 /* YFBaseTableViewController.swift in Sources */,
 				1C3EE63F1BC660DA0069BF55 /* YFProfileController.swift in Sources */,
 				1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */,
 				1C3EE63B1BC660DA0069BF55 /* YFDiscoverController.swift in Sources */,

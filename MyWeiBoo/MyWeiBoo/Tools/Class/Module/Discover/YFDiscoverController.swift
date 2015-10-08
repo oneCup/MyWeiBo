@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YFDiscoverController: UITableViewController {
+class YFDiscoverController: YFBaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
