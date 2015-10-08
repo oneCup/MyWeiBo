@@ -60,6 +60,7 @@ class YFMainController: UITabBarController {
         
         addChildViewController(nav)
         
+        
     }
     
     //创建一个自定义视图(懒加载控件)
@@ -78,11 +79,20 @@ class YFMainController: UITabBarController {
         
         //加入到tabar(在闭包内部需要引用self)
         self.tabBar.addSubview(button)
+        //监听事件
+        button.addTarget(self, action: "clickComposeButton", forControlEvents: UIControlEvents.TouchUpInside)
         
         return button
     
     }()
+    
+    //button的单击事件
    
+    func clickComposeButton() {
+    
+        print(__FUNCTION__)
+    
+    }
     //创建button的frame
     private func setUpComposedButton() {
     

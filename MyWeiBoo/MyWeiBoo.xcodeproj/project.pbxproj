@@ -154,10 +154,10 @@
 		1C3EE6301BC660DA0069BF55 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				1C3EE6311BC660DA0069BF55 /* Discover */,
-				1C3EE6331BC660DA0069BF55 /* Home */,
 				1C3EE6351BC660DA0069BF55 /* Main */,
+				1C3EE6331BC660DA0069BF55 /* Home */,
 				1C3EE6371BC660DA0069BF55 /* Message */,
+				1C3EE6311BC660DA0069BF55 /* Discover */,
 				1C3EE6391BC660DA0069BF55 /* Proflie */,
 			);
 			path = Module;
