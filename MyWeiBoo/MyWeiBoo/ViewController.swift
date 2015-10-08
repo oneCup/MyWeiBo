@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("测试一下")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
