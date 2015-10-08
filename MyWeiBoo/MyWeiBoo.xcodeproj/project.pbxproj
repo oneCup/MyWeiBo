@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE5FF1BC659960069BF55 /* AppDelegate.swift */; };
-		1C3EE6021BC659960069BF55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6011BC659960069BF55 /* ViewController.swift */; };
-		1C3EE6051BC659960069BF55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6031BC659960069BF55 /* Main.storyboard */; };
 		1C3EE6071BC659960069BF55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6061BC659960069BF55 /* Assets.xcassets */; };
-		1C3EE60A1BC659960069BF55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6081BC659960069BF55 /* LaunchScreen.storyboard */; };
 		1C3EE6151BC659960069BF55 /* MyWeiBooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */; };
 		1C3EE6201BC659960069BF55 /* MyWeiBooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */; };
+		1C3EE63B1BC660DA0069BF55 /* YFDiscoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6321BC660DA0069BF55 /* YFDiscoverController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE63C1BC660DA0069BF55 /* YFHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6341BC660DA0069BF55 /* YFHomeController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE63D1BC660DA0069BF55 /* YFMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6361BC660DA0069BF55 /* YFMainController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE63E1BC660DA0069BF55 /* YFMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6381BC660DA0069BF55 /* YFMessageController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C3EE63F1BC660DA0069BF55 /* YFProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE63A1BC660DA0069BF55 /* YFProfileController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +38,7 @@
 /* Begin PBXFileReference section */
 		1C3EE5FC1BC659960069BF55 /* MyWeiBoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeiBoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3EE5FF1BC659960069BF55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C3EE6011BC659960069BF55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1C3EE6041BC659960069BF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C3EE6061BC659960069BF55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1C3EE6091BC659960069BF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C3EE60B1BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C3EE6101BC659960069BF55 /* MyWeiBooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeiBooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeiBooTests.swift; sourceTree = "<group>"; };
@@ -47,6 +46,11 @@
 		1C3EE61B1BC659960069BF55 /* MyWeiBooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeiBooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeiBooUITests.swift; sourceTree = "<group>"; };
 		1C3EE6211BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C3EE6321BC660DA0069BF55 /* YFDiscoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFDiscoverController.swift; sourceTree = "<group>"; };
+		1C3EE6341BC660DA0069BF55 /* YFHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFHomeController.swift; sourceTree = "<group>"; };
+		1C3EE6361BC660DA0069BF55 /* YFMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMainController.swift; sourceTree = "<group>"; };
+		1C3EE6381BC660DA0069BF55 /* YFMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMessageController.swift; sourceTree = "<group>"; };
+		1C3EE63A1BC660DA0069BF55 /* YFProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +101,9 @@
 		1C3EE5FE1BC659960069BF55 /* MyWeiBoo */ = {
 			isa = PBXGroup;
 			children = (
+				1C3EE62D1BC660D00069BF55 /* Tools */,
 				1C3EE5FF1BC659960069BF55 /* AppDelegate.swift */,
-				1C3EE6011BC659960069BF55 /* ViewController.swift */,
-				1C3EE6031BC659960069BF55 /* Main.storyboard */,
 				1C3EE6061BC659960069BF55 /* Assets.xcassets */,
-				1C3EE6081BC659960069BF55 /* LaunchScreen.storyboard */,
 				1C3EE60B1BC659960069BF55 /* Info.plist */,
 			);
 			path = MyWeiBoo;
@@ -123,6 +125,82 @@
 				1C3EE6211BC659960069BF55 /* Info.plist */,
 			);
 			path = MyWeiBooUITests;
+			sourceTree = "<group>";
+		};
+		1C3EE62D1BC660D00069BF55 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE62E1BC660DA0069BF55 /* Class */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		1C3EE62E1BC660DA0069BF55 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE62F1BC660DA0069BF55 /* Model */,
+				1C3EE6301BC660DA0069BF55 /* Module */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		1C3EE62F1BC660DA0069BF55 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1C3EE6301BC660DA0069BF55 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE6311BC660DA0069BF55 /* Discover */,
+				1C3EE6331BC660DA0069BF55 /* Home */,
+				1C3EE6351BC660DA0069BF55 /* Main */,
+				1C3EE6371BC660DA0069BF55 /* Message */,
+				1C3EE6391BC660DA0069BF55 /* Proflie */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		1C3EE6311BC660DA0069BF55 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE6321BC660DA0069BF55 /* YFDiscoverController.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		1C3EE6331BC660DA0069BF55 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE6341BC660DA0069BF55 /* YFHomeController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1C3EE6351BC660DA0069BF55 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE6361BC660DA0069BF55 /* YFMainController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1C3EE6371BC660DA0069BF55 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE6381BC660DA0069BF55 /* YFMessageController.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		1C3EE6391BC660DA0069BF55 /* Proflie */ = {
+			isa = PBXGroup;
+			children = (
+				1C3EE63A1BC660DA0069BF55 /* YFProfileController.swift */,
+			);
+			path = Proflie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C3EE60A1BC659960069BF55 /* LaunchScreen.storyboard in Resources */,
 				1C3EE6071BC659960069BF55 /* Assets.xcassets in Resources */,
-				1C3EE6051BC659960069BF55 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +331,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C3EE6021BC659960069BF55 /* ViewController.swift in Sources */,
+				1C3EE63C1BC660DA0069BF55 /* YFHomeController.swift in Sources */,
+				1C3EE63D1BC660DA0069BF55 /* YFMainController.swift in Sources */,
+				1C3EE63F1BC660DA0069BF55 /* YFProfileController.swift in Sources */,
 				1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */,
+				1C3EE63B1BC660DA0069BF55 /* YFDiscoverController.swift in Sources */,
+				1C3EE63E1BC660DA0069BF55 /* YFMessageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,25 +370,6 @@
 			targetProxy = 1C3EE61C1BC659960069BF55 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1C3EE6031BC659960069BF55 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1C3EE6041BC659960069BF55 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1C3EE6081BC659960069BF55 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1C3EE6091BC659960069BF55 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1C3EE6221BC659960069BF55 /* Debug */ = {
@@ -396,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = MyWeiBoo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.heima-lyf1.MyWeiBoo";
@@ -407,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = MyWeiBoo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.heima-lyf1.MyWeiBoo";
@@ -481,6 +544,7 @@
 				1C3EE6261BC659960069BF55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C3EE6271BC659960069BF55 /* Build configuration list for PBXNativeTarget "MyWeiBooTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +553,7 @@
 				1C3EE6291BC659960069BF55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C3EE62A1BC659960069BF55 /* Build configuration list for PBXNativeTarget "MyWeiBooUITests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +562,7 @@
 				1C3EE62C1BC659960069BF55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
