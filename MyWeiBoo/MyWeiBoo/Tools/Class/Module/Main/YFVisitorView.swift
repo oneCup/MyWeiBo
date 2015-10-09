@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK:登录协议
 protocol VisitorLoginDelegate: NSObjectProtocol {
 
  /// 将要登录
@@ -30,6 +31,45 @@ class YFVisitorView: UIView {
         setUpUI()
         
     }
+    
+// MARK: 设置视图信息
+    
+    func setUpViewInfo(isHome:Bool, imageNamed:String, messageText:String) {
+    
+        iconView.image = UIImage(named: imageNamed)
+        
+        messageLable.text = messageText
+        
+        HomeIconView.hidden = !isHome
+        
+        //判断是否有动画,如果没有,没有就讲遮罩放在最底层,如果有就开始动画
+        
+        isHome ? StartAnimated() : sendSubviewToBack(maskIconView)
+    
+    }
+    
+// MARK: 设置动画
+    
+    func StartAnimated() {
+    
+        //设置核心动画
+        
+        let animated = CABasicAnimation(keyPath: "transform.rotation")
+        
+        animated.toValue = 2 * M_PI
+        
+        animated.repeatCount = MAXFLOAT
+        
+        animated.duration = 20.0
+        
+        //为了防止将切换界面时动画丢失,设置动画属性
+        
+        animated.removedOnCompletion = false
+        
+        iconView.layer.addAnimation(animated, forKey: nil)
+        
+    
+    }
 
     required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
@@ -46,9 +86,7 @@ class YFVisitorView: UIView {
     
         //代理执行代理方法
         delegate?.visitorWillLogin()
-        
-    print(__FUNCTION__)
-    
+        print(__FUNCTION__)
     
     }
     
@@ -56,18 +94,13 @@ class YFVisitorView: UIView {
     func clickResignButton() {
         //代理执行代理方法
         delegate?.visitorWillRegester()
-
-    
-     print(__FUNCTION__)
-    
+        print(__FUNCTION__)
     
     }
     
     //设置界面元素
     private func setUpUI() {
     
-        self.backgroundColor = UIColor.redColor()
-        
         //将图标加载到视图
         addSubview(iconView)
         addSubview(maskIconView)
@@ -186,6 +219,8 @@ class YFVisitorView: UIView {
         button.setTitle("登录", forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
         button.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+
         //注册监听事件
         button.addTarget(self, action: "clickLoginButton", forControlEvents: UIControlEvents.TouchUpInside)
         return button

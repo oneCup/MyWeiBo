@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //设置外观对象,一旦设置全局共享,越早设置越好
+        setApperance()
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         window?.backgroundColor = UIColor.redColor()
@@ -28,6 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     //设置外观对象
+    func setApperance() {
+        
+        //获取外观单例对象并设置代理
+        
+        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
+        
+        UITabBar.appearance().tintColor = UIColor.orangeColor()
+        
+    }
     
 
     func applicationWillResignActive(application: UIApplication) {

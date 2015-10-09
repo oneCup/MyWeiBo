@@ -51,7 +51,7 @@ class YFMainController: UITabBarController {
         //创建vc
         vc.title = title;
         //设置tincolor
-        tabBar.tintColor = UIColor.orangeColor()
+//        tabBar.tintColor = UIColor.orangeColor()
         
         vc.tabBarItem.image = UIImage(named: image)
         

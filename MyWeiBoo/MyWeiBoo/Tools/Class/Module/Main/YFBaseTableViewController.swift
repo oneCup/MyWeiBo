@@ -14,7 +14,10 @@ class YFBaseTableViewController: UITableViewController, VisitorLoginDelegate {
     var userLogon = false
     
     //设置视图属性
-    var VisitorView = YFVisitorView()
+    var VisitorView:YFVisitorView?
+    
+// MARK:加载视图(判断用户登录)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,18 +26,23 @@ class YFBaseTableViewController: UITableViewController, VisitorLoginDelegate {
         
 
             }
-///  设置访客视图
+    
+// MARK: 设置访客视图
     private func setupVisitorView(){
         
+        VisitorView = YFVisitorView()
         view = VisitorView
+        
         //设置代理
-        VisitorView.delegate = self
+        VisitorView?.delegate = self
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorWillLogin")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorWillRegester")
         
     }
-
+    
+//  MARK:--代理实现VisitorLoginDelegate
+    
     func visitorWillLogin() {
         
         print(__FUNCTION__)
