@@ -8,15 +8,26 @@
 
 import UIKit
 
+protocol VisitorLoginDelegate: NSObjectProtocol {
+
+ /// 将要登录
+    func visitorWillLogin()
+ /// 将要注册
+    func visitorWillRegester()
+
+}
+
 class YFVisitorView: UIView {
 
+    //定义代理属性--一定要使用weak
+    
+    weak var delegate : VisitorLoginDelegate?
    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         //创建视图
         setUpUI()
-        
         
     }
 
@@ -33,6 +44,9 @@ class YFVisitorView: UIView {
     //登录事件
     func clickLoginButton () {
     
+        //代理执行代理方法
+        delegate?.visitorWillLogin()
+        
     print(__FUNCTION__)
     
     
@@ -40,6 +54,9 @@ class YFVisitorView: UIView {
     
     //注册事件
     func clickResignButton() {
+        //代理执行代理方法
+        delegate?.visitorWillRegester()
+
     
      print(__FUNCTION__)
     

@@ -16,6 +16,7 @@ class YFMainController: UITabBarController {
         //加入5个视图控制器
         addChildViewControllers()
         print(tabBar.subviews)
+        
 
         // Do any additional setup after loading the view.
     }
