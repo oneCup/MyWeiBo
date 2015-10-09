@@ -18,6 +18,7 @@
 		1C3EE6431BC6801E0069BF55 /* YFMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6421BC6801E0069BF55 /* YFMainController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C3EE6451BC6803F0069BF55 /* YFBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6441BC6803F0069BF55 /* YFBaseTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C3EE6471BC680640069BF55 /* YFBaseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6461BC680640069BF55 /* YFBaseView.storyboard */; settings = {ASSET_TAGS = (); }; };
+		1C3EE64B1BC6891A0069BF55 /* YFVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE64A1BC6891A0069BF55 /* YFVisitorView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		1C3EE6421BC6801E0069BF55 /* YFMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMainController.swift; sourceTree = "<group>"; };
 		1C3EE6441BC6803F0069BF55 /* YFBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFBaseTableViewController.swift; sourceTree = "<group>"; };
 		1C3EE6461BC680640069BF55 /* YFBaseView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = YFBaseView.storyboard; sourceTree = "<group>"; };
+		1C3EE64A1BC6891A0069BF55 /* YFVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFVisitorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				1C3EE6421BC6801E0069BF55 /* YFMainController.swift */,
 				1C3EE6441BC6803F0069BF55 /* YFBaseTableViewController.swift */,
 				1C3EE6461BC680640069BF55 /* YFBaseView.storyboard */,
+				1C3EE64A1BC6891A0069BF55 /* YFVisitorView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C3EE64B1BC6891A0069BF55 /* YFVisitorView.swift in Sources */,
 				1C3EE6431BC6801E0069BF55 /* YFMainController.swift in Sources */,
 				1C3EE63C1BC660DA0069BF55 /* YFHomeController.swift in Sources */,
 				1C3EE6451BC6803F0069BF55 /* YFBaseTableViewController.swift in Sources */,

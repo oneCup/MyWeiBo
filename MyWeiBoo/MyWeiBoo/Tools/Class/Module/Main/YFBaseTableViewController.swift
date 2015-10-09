@@ -12,6 +12,9 @@ class YFBaseTableViewController: UITableViewController {
     
     //设置用户登录标记
     var userLogon = false
+    
+    //设置视图属性
+    var VisitorView = YFVisitorView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,10 +28,11 @@ class YFBaseTableViewController: UITableViewController {
     */
     
     private func setupVisitorView(){
-    
-        view = UIView()
-        view.backgroundColor = UIColor.redColor()
-
+        
+        view = VisitorView
+//        print("\(view.classForCoder)")
+//        view.backgroundColor = UIColor.whiteColor()
+        
     }
 
     override func didReceiveMemoryWarning() {
