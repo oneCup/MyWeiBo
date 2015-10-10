@@ -13,16 +13,26 @@ class YFUserAcount: NSObject{
     ///  access_token 用于调用access_token，接口获取授权后的access token。
     var access_token: String?
     ///  expires_in access_token的生命周期，单位是秒数\
-    var expires_in: NSTimeInterval = 0
+    var expires_in: NSTimeInterval = 0 {
+        
+        didSet{
+        
+        expires_Date = NSDate(timeIntervalSinceNow: expires_in)
+        
+        }
+    
+          }
     ///  uid (string)当前授权用户的UID。可获取用户的图像
     var uid: String?
     
+    //过期日期
+    var expires_Date: NSDate?
+    
     init(dict: [String: AnyObject]) {
         super.init()
-    
         setValuesForKeysWithDictionary(dict)
-    
-    
+        
+//        expires_Date = NSDate(timeIntervalSinceNow: expires_in)
     }
     
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
@@ -33,7 +43,7 @@ class YFUserAcount: NSObject{
     override var description: String {
         
 //        let properities = ["access_token","expires_in:","uid"]
-         let properities = ["access_token","expires_in","uid"]
+         let properities = ["access_token","expires_in","uid","expires_Date"]
         
         
         //模型转字典
