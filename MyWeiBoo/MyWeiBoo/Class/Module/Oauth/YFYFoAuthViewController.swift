@@ -85,7 +85,7 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
     
     YFNETWorkTools.sharedTools.loadAccessToken(code) { (result, error) -> () in
         
-        if error == nil || result == nil {
+        if error != nil || result == nil {
         
             SVProgressHUD.showInfoWithStatus("您的网络不给力")
             
@@ -99,6 +99,11 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
     
         }
         
+        //字典转模型
+        
+        let accout = YFUserAcount.init(dict: result!)
+        
+        print(accout)
         }
     
     
