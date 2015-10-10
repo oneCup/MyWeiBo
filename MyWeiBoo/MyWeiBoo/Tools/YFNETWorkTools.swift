@@ -15,6 +15,11 @@ class YFNETWorkTools: AFHTTPSessionManager {
     static let sharedTools: YFNETWorkTools = {
         let baseUrl = NSURL(string: "https://api.weibo.com/")!
         let tools = YFNETWorkTools(baseURL: baseUrl)
+        //设置解析数据类型
+        tools.responseSerializer.acceptableContentTypes = NSSet(objects: "application/json", "text/json", "text/javascript","text/plain") as Set<NSObject>
+
+
+
         return tools
     
     }()
@@ -25,11 +30,39 @@ class YFNETWorkTools: AFHTTPSessionManager {
     let redirect_uri = "http://www.baidu.com"
     //返回oauth授权地址
     func oauthUrl() ->NSURL {
-    let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(client_id)&redirect_uri=\(redirect_uri)"
+        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(client_id)&redirect_uri=\(redirect_uri)"
         
         let oauthUrl = NSURL(string: urlString)
         
         return oauthUrl!
     
     }
+    
+   ///加载Token
+    func loadAccessToken(code: String,finished: (result: [String: AnyObject]?,error: NSError?)->()) {
+
+        let urlstring = "https://api.weibo.com/oauth2/access_token"
+        
+            let params = ["client_id":client_id,
+                    "redirect_uri":redirect_uri,
+                    "client_secret":appSecrect,
+                    "grant_type":"authorization_code",
+                    "code":code,]
+        
+            POST(urlstring, parameters: params, success: { (_, JSON) -> Void in
+                
+                print(JSON)
+                
+                finished(result:JSON as? [String: AnyObject],error:nil)
+                
+                }) { (_, error) -> Void in
+                    
+                    print(error)
+                finished(result: nil, error: error)
+                    
+        }
+        
+        
+        }
+    
 }

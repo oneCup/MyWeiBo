@@ -67,7 +67,9 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
             //query.substringFromIndex("code=".endIndex)截取字符串从"code="最后一个字符串开始
            let code =  query.substringFromIndex("code=".endIndex)
             print(code)
+            
             // TODO: 换取TOKEN
+            loadAccessToken(code)
         }else {
             
             //取消授权后,回到主界面
@@ -76,6 +78,30 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
         
         return false
         
+    }
+    //加载授权密码
+    
+    private func loadAccessToken(code: String){
+    
+    YFNETWorkTools.sharedTools.loadAccessToken(code) { (result, error) -> () in
+        
+        if error == nil || result == nil {
+        
+            SVProgressHUD.showInfoWithStatus("您的网络不给力")
+            
+            //网络不给力时,返回主界面(延时)
+            let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC))
+            dispatch_after(when, dispatch_get_main_queue()){
+                
+                self.close()
+            }
+            return
+    
+        }
+        
+        }
+    
+    
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
