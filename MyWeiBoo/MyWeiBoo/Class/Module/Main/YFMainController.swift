@@ -13,9 +13,11 @@ class YFMainController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //加入5个视图控制器
         addChildViewControllers()
         print(tabBar.subviews)
+        
 
         // Do any additional setup after loading the view.
     }
@@ -50,7 +52,7 @@ class YFMainController: UITabBarController {
         //创建vc
         vc.title = title;
         //设置tincolor
-        tabBar.tintColor = UIColor.orangeColor()
+//        tabBar.tintColor = UIColor.orangeColor()
         
         vc.tabBarItem.image = UIImage(named: image)
         
@@ -59,6 +61,7 @@ class YFMainController: UITabBarController {
         let nav = UINavigationController(rootViewController: vc)
         
         addChildViewController(nav)
+        
         
     }
     
@@ -78,11 +81,20 @@ class YFMainController: UITabBarController {
         
         //加入到tabar(在闭包内部需要引用self)
         self.tabBar.addSubview(button)
+        //监听事件
+        button.addTarget(self, action: "clickComposeButton", forControlEvents: UIControlEvents.TouchUpInside)
         
         return button
     
     }()
+    
+    //button的单击事件
    
+    func clickComposeButton() {
+    
+        print(__FUNCTION__)
+    
+    }
     //创建button的frame
     private func setUpComposedButton() {
     
