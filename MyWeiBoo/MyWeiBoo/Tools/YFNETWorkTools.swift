@@ -8,6 +8,8 @@
 
 import UIKit
 import AFNetworking
+/// 错误的类别标记
+private let HMErrorDomainName = "com.itheima.error.network"
 
 class YFNETWorkTools: AFHTTPSessionManager {
     
@@ -59,10 +61,48 @@ class YFNETWorkTools: AFHTTPSessionManager {
                     
                     print(error)
                 finished(result: nil, error: error)
-                    
         }
         
-        
         }
+///  封装AFN的方法
+    /*
+    便于网络访问
+    */
+   
+    //定义一个闭包的类型,也可以用枚举
+    typealias YFNetFinishedBack = (result: [String: AnyObject]?,error: NSError?)->()
+    
+    /// GET 请求
+    ///
+    /// :param: urlString URL 地址
+    /// :param: params    参数字典
+    /// :param: finished  完成回调
+    private func RequestGet(urlString:String,params:[String],finished:YFNetFinishedBack){
+        
+    GET(urlString, parameters: params, success: { (_ , JSON) -> Void in
+        
+        if let result = JSON as? [String: AnyObject]{
+        //有结果的回调
+            finished(result: result, error: nil)
+        }else{
+            print("没有数据 GET Request \(urlString)")
+            // 没有错误，同时没有结果
+            print("没有数据 GET Request \(urlString)")
+            /**
+            domain: 错误的范围/大类别，定义一个常量字符串
+            code: 错误代号，有些公司会专门定义一个特别大的.h，定义所有的错误编码，通常是负数
+            userInfo: 可以传递一些附加的错误信息
+            */
+            let error = NSError(domain: HMErrorDomainName, code: -1, userInfo: ["errorMessage": "空数据"])
+            finished(result: nil, error: error)
+        }
+        
+    }) { (_ , error) -> Void in
+            
+            print(error)
+            finished(result: nil, error: error)
+        }
+    
+    }
     
 }
