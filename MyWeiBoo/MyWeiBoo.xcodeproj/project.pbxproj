@@ -22,6 +22,7 @@
 		1C3EE6151BC659960069BF55 /* MyWeiBooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */; };
 		1C3EE6201BC659960069BF55 /* MyWeiBooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */; };
 		1CA081381BC9746B00F7BACD /* YFUserAcount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA081371BC9746B00F7BACD /* YFUserAcount.swift */; settings = {ASSET_TAGS = (); }; };
+		1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		FB4EB9CBC62A893C65CAC19C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD087CB8C368301DDD53C684 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeiBooUITests.swift; sourceTree = "<group>"; };
 		1C3EE6211BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CA081371BC9746B00F7BACD /* YFUserAcount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUserAcount.swift; sourceTree = "<group>"; };
+		1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFWelcomViewController.swift; sourceTree = "<group>"; };
 		792EDDD86B16134439FEB5BC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BD087CB8C368301DDD53C684 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFDA0804FC60B32880B0D3D3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		1C237C2C1BC8235800A63965 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				1CC3EFB71BCA617D00314A01 /* NewFuture */,
 				1C237C2D1BC8235800A63965 /* Model */,
 				1C237C2E1BC8235800A63965 /* Module */,
 			);
@@ -234,6 +237,15 @@
 				1C237C2A1BC8221B00A63965 /* YFNETWorkTools.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		1CC3EFB71BCA617D00314A01 /* NewFuture */ = {
+			isa = PBXGroup;
+			children = (
+				1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */,
+			);
+			name = NewFuture;
+			path = Module/NewFuture;
 			sourceTree = "<group>";
 		};
 		2943080367E612FCB6C5B72C /* Frameworks */ = {
@@ -456,6 +468,7 @@
 				1C237C3D1BC8235800A63965 /* YFHomeController.swift in Sources */,
 				1C237C421BC8235800A63965 /* YFMessageController.swift in Sources */,
 				1CA081381BC9746B00F7BACD /* YFUserAcount.swift in Sources */,
+				1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */,
 				1C237C3E1BC8235800A63965 /* YFBaseTableViewController.swift in Sources */,
 				1C237C2B1BC8221B00A63965 /* YFNETWorkTools.swift in Sources */,
 				1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */,

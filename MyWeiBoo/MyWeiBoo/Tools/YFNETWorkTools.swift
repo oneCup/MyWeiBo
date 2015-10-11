@@ -29,8 +29,25 @@ class YFNETWorkTools: AFHTTPSessionManager {
     
     }()
     
+    // MARK: - 加载用户数据
+    /// 加载用户信息 － 职责，做网络访问，获取到 dict
+    /// :param: uid      用户代号字符串
+    /// :param: finished 完成回调
+    func loadUserInfo(uid:String,finished: YFNetFinishedBack) {
     
-    //返回oauth授权地址
+        // 判断 token是否存在
+        if YFUserAcount.LoadAccout()?.access_token == nil {
+            return;
+        }
+        let url = "2/users/show.json"
+        //向服务器发送请求
+        let params: [String: AnyObject] = ["access_token": YFUserAcount.LoadAccout()!.access_token!, "uid": uid]
+        // 发送网络请求
+        // 提示：如果参数不正确，首先用 option + click 确认参数类型
+       RequestGet(url, params: params, finished: finished)
+    }
+    
+    //返回oauth授权地址xx
     func oauthUrl() ->NSURL {
         let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(client_id)&redirect_uri=\(redirect_uri)"
         
@@ -77,9 +94,9 @@ class YFNETWorkTools: AFHTTPSessionManager {
     /// :param: urlString URL 地址
     /// :param: params    参数字典
     /// :param: finished  完成回调
-    private func RequestGet(urlString:String,params:[String],finished:YFNetFinishedBack){
+    private func RequestGet(urlString:String,params:[String:AnyObject],finished:YFNetFinishedBack){
         
-    GET(urlString, parameters: params, success: { (_ , JSON) -> Void in
+        GET(urlString, parameters: params, success: { (_ , JSON) -> Void in
         
         if let result = JSON as? [String: AnyObject]{
         //有结果的回调

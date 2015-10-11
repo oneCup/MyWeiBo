@@ -46,7 +46,6 @@ class YFUserAcount: NSObject,NSCoding{
     ///  保存用户的账号
     func saveAccountInfo() {
         NSKeyedArchiver.archiveRootObject(self, toFile: YFUserAcount.accoutPath)
-   
     }
     private static var userAccout:YFUserAcount?
     
@@ -58,7 +57,6 @@ class YFUserAcount: NSObject,NSCoding{
         
        //判断用户账号是否存在
         if userAccout == nil {
-        
         //1 解档 - 如果没有保存过,解档结果可能仍然为nil
             userAccout = NSKeyedUnarchiver.unarchiveObjectWithFile(accoutPath)as? YFUserAcount
         }
@@ -70,14 +68,38 @@ class YFUserAcount: NSObject,NSCoding{
         
         return userAccout
     }
+    //MARK:加载用户信息
+    //加载用户信息 - 调用方法,异步获取用户附加信息,保存当前用户
+    
+    func loadUserInfo(finished:(error:NSError?)->()) {
+    
+        YFNETWorkTools.sharedTools.loadUserInfo(uid!) { (result, error) -> () in
+            
+            if error != nil {
+            //提示:error一定要传递
+                finished(error: error)
+                return
+            }
+            
+            //设置用户信息
+            self.name = result!["name"] as? String
+            
+            self.avatar_larg = result!["avatar_larg"] as? String
+            //保存用户信息
+            self.saveAccountInfo()
+            }
+    
+    }
     
     //MARK:归档解档 NScoding
     /// `归`档 -> 保存，将自定义对象转换成二进制数据保存到磁盘
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(access_token, forKey: "access_token")
-        aCoder.encodeObject(expires_in, forKey: "expires_in")
+        aCoder.encodeDouble(expires_in, forKey: "expires_in")
         aCoder.encodeObject(uid, forKey: "uid")
         aCoder.encodeObject(expires_Date, forKey: "expires_Date")
+        aCoder.encodeObject(name, forKey: "name")
+        aCoder.encodeObject(avatar_larg, forKey: "avatar_larg")
         
     }
     
@@ -87,6 +109,8 @@ class YFUserAcount: NSObject,NSCoding{
         expires_in = aDecoder.decodeDoubleForKey("expires_in")
         expires_Date = aDecoder.decodeObjectForKey("expires_Date") as? NSDate
         uid = aDecoder.decodeObjectForKey("uid") as? String
+        name = aDecoder.decodeObjectForKey("name") as? String
+        avatar_larg = aDecoder.decodeObjectForKey("avatar_larg") as? String
     
     }
     
