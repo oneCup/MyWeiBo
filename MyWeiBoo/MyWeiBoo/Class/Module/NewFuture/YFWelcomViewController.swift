@@ -17,12 +17,20 @@ class YFWelcomViewController: UIViewController {
         prarareUI()
         //加载用户头像
         if let urlString = YFUserAcount.LoadAccout()?.avatar_large {
-        
             iconView.sd_setImageWithURL(NSURL(string: urlString)!)
-        
         }
-
-        // Do any additional setup after loading the view.
+        //加载用户名称
+        if let name = YFUserAcount.LoadAccout()?.name {
+            nameLable.text = name
+            nameLable.sizeToFit()
+        }
+        
+//        startAnimated()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        startAnimated()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,12 +38,32 @@ class YFWelcomViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK:设置动画
+    //拿到回弹的效果
+    var constanceH: NSLayoutConstraint?
+    
+    private func startAnimated() {
+        //更新约束
+        constanceH?.constant = UIScreen.mainScreen().bounds.width + constanceH!.constant
+        
+        UIView.animateWithDuration(1.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+            // 强制更新约束
+            self.view.layoutIfNeeded()
+            
+            
+            }){ (_) -> Void in
+                
+        }
+    }
+    
     ///MARK:准备界面
     private func prarareUI() {
     
         view.addSubview(backImageView)
         view.addSubview(iconView)
+        iconView.addSubview(nameLable)
         view.addSubview(lable)
+        
         
         //1 设置布局
         backImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,8 +78,14 @@ class YFWelcomViewController: UIViewController {
         
         view.addConstraint(NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute:NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 90))
         
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute:NSLayoutAttribute.Top, multiplier: 1.0, constant: 300))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute:NSLayoutAttribute.Top, multiplier: 1.0, constant: 160))
+        constanceH = view.constraints.last
+        
+        nameLable.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 
+        
         
         //3.设置文字标签
         
@@ -77,19 +111,27 @@ class YFWelcomViewController: UIViewController {
         let iv = UIImageView(image: UIImage(named: "avatar_default_big"))
         iv.layer.masksToBounds = true
         iv.layer.cornerRadius = 45
+       
         return iv
     }()
     
     ///  消息文字
     private lazy var lable : UILabel = {
-    
         let lable = UILabel()
         lable.text = "欢迎归来"
         lable.sizeToFit()
         return lable
-        
-    
-    
     }()
    
+    // 昵称lable
+    private lazy var nameLable: UILabel = {
+    
+        let nameLable = UILabel()
+        
+        nameLable.font = UIFont.systemFontOfSize(14)
+        nameLable.textAlignment = NSTextAlignment.Center
+        nameLable.numberOfLines = 2
+        
+        return nameLable
+    }()
 }

@@ -28,7 +28,7 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-// MARK:UIWebViewDelegate
+    // MARK:UIWebViewDelegate
     func webViewDidStartLoad(webView: UIWebView) {
         //显示网络加载转轮
         SVProgressHUD.show()
@@ -38,7 +38,6 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
     /* 1 如果请求的URL包含回调地址,否则继续加载
        2 如果请求参数中包含code,可以从url中获得请求码
         request.URL?.query可获得值
-    
     */
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         print(request)
