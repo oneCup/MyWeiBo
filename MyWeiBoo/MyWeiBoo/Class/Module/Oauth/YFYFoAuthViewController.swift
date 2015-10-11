@@ -68,7 +68,7 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
            let code =  query.substringFromIndex("code=".endIndex)
             print(code)
             
-            // TODO: 换取TOKEN
+            //TODO: 换取TOKEN
             loadAccessToken(code)
         }else {
             
@@ -102,6 +102,9 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
         //字典转模型
         
         let accout = YFUserAcount.init(dict: result!)
+        
+        //保存账户信息
+        accout.saveAccountInfo()
         
         print(accout)
         }

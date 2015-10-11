@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YFUserAcount: NSObject{
+class YFUserAcount: NSObject,NSCoding{
     
     ///  access_token 用于调用access_token，接口获取授权后的access token。
     var access_token: String?
@@ -16,38 +16,84 @@ class YFUserAcount: NSObject{
     var expires_in: NSTimeInterval = 0 {
         
         didSet{
-        
         expires_Date = NSDate(timeIntervalSinceNow: expires_in)
-        
         }
+    }
     
-          }
     ///  uid (string)当前授权用户的UID。可获取用户的图像
     var uid: String?
-    
     //过期日期
     var expires_Date: NSDate?
+    /// 用户头像地址（大图），180×180像素
+    var avatar_larg: String?
+    ///  name 友好显示名称
+    var name:String?
+       
     
     init(dict: [String: AnyObject]) {
         super.init()
         setValuesForKeysWithDictionary(dict)
-        
-//        expires_Date = NSDate(timeIntervalSinceNow: expires_in)
+       }
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    ///  调用归档解档的方法
+    ///保存归档的文件路径
+    //TODO:last?为什么用!
+
+    static private let accoutPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!.stringByAppendingString("/account.plist")
+    
+    ///  保存用户的账号
+    func saveAccountInfo() {
+        NSKeyedArchiver.archiveRootObject(self, toFile: YFUserAcount.accoutPath)
+   
+    }
+    private static var userAccout:YFUserAcount?
+    
+    ///  静态用户的账号属性
+    ///
+    ///  //判断用户账号是否存在,不存在,解档,存在判断日期是否过期,过期,则将日期设置为nil,不为空则直接返回
+
+    class func LoadAccout ()-> YFUserAcount? {
         
+       //判断用户账号是否存在
+        if userAccout == nil {
+        
+        //1 解档 - 如果没有保存过,解档结果可能仍然为nil
+            userAccout = NSKeyedUnarchiver.unarchiveObjectWithFile(accoutPath)as? YFUserAcount
+        }
+        
+        if let date = userAccout?.expires_Date where date.compare(NSDate()) == NSComparisonResult.OrderedAscending {
+            //如果已经过期,需要清空账号记录
+            userAccout = nil
+        }
+        
+        return userAccout
+    }
+    
+    //MARK:归档解档 NScoding
+    /// `归`档 -> 保存，将自定义对象转换成二进制数据保存到磁盘
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(access_token, forKey: "access_token")
+        aCoder.encodeObject(expires_in, forKey: "expires_in")
+        aCoder.encodeObject(uid, forKey: "uid")
+        aCoder.encodeObject(expires_Date, forKey: "expires_Date")
+        
+    }
+    
+    /// `解`档 -> 恢复 将二进制数据从磁盘恢复成自定义对象
+    required init?(coder aDecoder: NSCoder) {
+        access_token = aDecoder.decodeObjectForKey("access_token") as? String
+        expires_in = aDecoder.decodeDoubleForKey("expires_in")
+        expires_Date = aDecoder.decodeObjectForKey("expires_Date") as? NSDate
+        uid = aDecoder.decodeObjectForKey("uid") as? String
+    
     }
     
     //描述信息的打印
     override var description: String {
-        
-//        let properities = ["access_token","expires_in:","uid"]
          let properities = ["access_token","expires_in","uid","expires_Date"]
-        
-        
         //模型转字典
-        
         return ("\(dictionaryWithValuesForKeys(properities))")
         
          }
