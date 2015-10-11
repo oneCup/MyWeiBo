@@ -25,7 +25,7 @@ class YFUserAcount: NSObject,NSCoding{
     //过期日期
     var expires_Date: NSDate?
     /// 用户头像地址（大图），180×180像素
-    var avatar_larg: String?
+    var avatar_large: String?
     ///  name 友好显示名称
     var name:String?
        
@@ -33,6 +33,8 @@ class YFUserAcount: NSObject,NSCoding{
     init(dict: [String: AnyObject]) {
         super.init()
         setValuesForKeysWithDictionary(dict)
+        YFUserAcount.userAccout = self
+        
        }
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
     }
@@ -46,6 +48,7 @@ class YFUserAcount: NSObject,NSCoding{
     ///  保存用户的账号
     func saveAccountInfo() {
         NSKeyedArchiver.archiveRootObject(self, toFile: YFUserAcount.accoutPath)
+        print(YFUserAcount.accoutPath)
     }
     private static var userAccout:YFUserAcount?
     
@@ -58,7 +61,7 @@ class YFUserAcount: NSObject,NSCoding{
        //判断用户账号是否存在
         if userAccout == nil {
         //1 解档 - 如果没有保存过,解档结果可能仍然为nil
-            userAccout = NSKeyedUnarchiver.unarchiveObjectWithFile(accoutPath)as? YFUserAcount
+            userAccout = NSKeyedUnarchiver.unarchiveObjectWithFile(accoutPath) as? YFUserAcount
         }
         
         if let date = userAccout?.expires_Date where date.compare(NSDate()) == NSComparisonResult.OrderedAscending {
@@ -81,10 +84,11 @@ class YFUserAcount: NSObject,NSCoding{
                 return
             }
             
+            print(result)
             //设置用户信息
             self.name = result!["name"] as? String
             
-            self.avatar_larg = result!["avatar_larg"] as? String
+            self.avatar_large = result!["avatar_large"] as? String
             //保存用户信息
             self.saveAccountInfo()
             }
@@ -99,7 +103,7 @@ class YFUserAcount: NSObject,NSCoding{
         aCoder.encodeObject(uid, forKey: "uid")
         aCoder.encodeObject(expires_Date, forKey: "expires_Date")
         aCoder.encodeObject(name, forKey: "name")
-        aCoder.encodeObject(avatar_larg, forKey: "avatar_larg")
+        aCoder.encodeObject(avatar_large, forKey: "avatar_large")
         
     }
     
@@ -110,13 +114,13 @@ class YFUserAcount: NSObject,NSCoding{
         expires_Date = aDecoder.decodeObjectForKey("expires_Date") as? NSDate
         uid = aDecoder.decodeObjectForKey("uid") as? String
         name = aDecoder.decodeObjectForKey("name") as? String
-        avatar_larg = aDecoder.decodeObjectForKey("avatar_larg") as? String
+        avatar_large = aDecoder.decodeObjectForKey("avatar_large") as? String
     
     }
     
     //描述信息的打印
     override var description: String {
-         let properities = ["access_token","expires_in","uid","expires_Date"]
+         let properities = ["access_token","expires_in","uid","expires_Date","name","avatar_large"]
         //模型转字典
         return ("\(dictionaryWithValuesForKeys(properities))")
         

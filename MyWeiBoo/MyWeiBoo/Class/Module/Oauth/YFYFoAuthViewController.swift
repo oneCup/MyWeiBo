@@ -86,13 +86,17 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
         //1.字典转模型
         let accout = YFUserAcount.init(dict: result!)
         //2.异步加载用户信息
-        //3.保存用户信息
-        accout.saveAccountInfo()
         //4.获取用户信息
-        YFNETWorkTools.sharedTools.loadUserInfo(accout.uid!, finished: { (result, error) -> () in
+            accout.loadUserInfo({ (error) -> () in
+                print(result)
+            })
+//        YFNETWorkTools.sharedTools.loadUserInfo(accout.uid!, finished: { (result, error) -> () in
+//            
+//            print(result)
+//        })
             
-            print(result)
-        })
+        //3.保存用户信息
+//        accout.saveAccountInfo()
         print(accout)
         }
     }

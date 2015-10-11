@@ -7,11 +7,20 @@
 //
 
 import UIKit
+import SDWebImage
 
 class YFWelcomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        prarareUI()
+        //加载用户头像
+        if let urlString = YFUserAcount.LoadAccout()?.avatar_large {
+        
+            iconView.sd_setImageWithURL(NSURL(string: urlString)!)
+        
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -27,6 +36,33 @@ class YFWelcomViewController: UIViewController {
         view.addSubview(backImageView)
         view.addSubview(iconView)
         view.addSubview(lable)
+        
+        //1 设置布局
+        backImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subviews]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["subviews":backImageView]))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subviews]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views:["subviews": backImageView]))
+        
+        //2 设置iconView
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraint(NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+        
+        view.addConstraint(NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute:NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 90))
+        
+        view.addConstraint(NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute:NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 90))
+        
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute:NSLayoutAttribute.Top, multiplier: 1.0, constant: 300))
+
+        
+        //3.设置文字标签
+        
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraint(NSLayoutConstraint(item: lable, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+        
+        view.addConstraint(NSLayoutConstraint(item: lable, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 16))
+        
+        
+        
+        
     }
     
     
@@ -36,13 +72,11 @@ class YFWelcomViewController: UIViewController {
     private lazy var backImageView: UIImageView = UIImageView(image: UIImage(named: "ad_background"))
     ///  用户头像
     private lazy var iconView: UIImageView = {
-    
+        
+        //图像占位符
         let iv = UIImageView(image: UIImage(named: "avatar_default_big"))
-            
         iv.layer.masksToBounds = true
-        
         iv.layer.cornerRadius = 45
-        
         return iv
     }()
     

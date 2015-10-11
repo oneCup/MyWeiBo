@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.backgroundColor = UIColor.whiteColor()
         
-        window?.rootViewController = YFMainController()
+//        window?.rootViewController = YFMainController()
+        window?.rootViewController = YFWelcomViewController()
         
         window?.makeKeyAndVisible()
 
