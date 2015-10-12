@@ -35,7 +35,7 @@ class YFWelcomViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
     //MARK:设置动画
@@ -47,9 +47,9 @@ class YFWelcomViewController: UIViewController {
         constanceH?.constant = UIScreen.mainScreen().bounds.width + constanceH!.constant
         
         UIView.animateWithDuration(1.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+            
             // 强制更新约束
             self.view.layoutIfNeeded()
-            
             
             }){ (_) -> Void in
                 
@@ -63,7 +63,6 @@ class YFWelcomViewController: UIViewController {
         view.addSubview(iconView)
         iconView.addSubview(nameLable)
         view.addSubview(lable)
-        
         
         //1 设置布局
         backImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,25 +80,18 @@ class YFWelcomViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute:NSLayoutAttribute.Top, multiplier: 1.0, constant: 160))
         constanceH = view.constraints.last
         
+        //设置昵称标签
         nameLable.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 
-        
-        
         //3.设置文字标签
         
         lable.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: lable, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
         
         view.addConstraint(NSLayoutConstraint(item: lable, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 16))
-        
-        
-        
-        
     }
-    
-    
 
     //MARK:-懒加载图片
     ///背景图片

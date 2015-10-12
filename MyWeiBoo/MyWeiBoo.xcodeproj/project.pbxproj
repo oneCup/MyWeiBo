@@ -17,6 +17,7 @@
 		1C237C421BC8235800A63965 /* YFMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C237C391BC8235800A63965 /* YFMessageController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C237C431BC8235800A63965 /* YFProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C237C3B1BC8235800A63965 /* YFProfileController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C237C481BC82F3200A63965 /* YFYFoAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C237C471BC82F3200A63965 /* YFYFoAuthViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C329CA31BCABA9400CF56F1 /* YFNewFutureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C329CA21BCABA9400CF56F1 /* YFNewFutureController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE5FF1BC659960069BF55 /* AppDelegate.swift */; };
 		1C3EE6071BC659960069BF55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6061BC659960069BF55 /* Assets.xcassets */; };
 		1C3EE6151BC659960069BF55 /* MyWeiBooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */; };
@@ -54,6 +55,7 @@
 		1C237C391BC8235800A63965 /* YFMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFMessageController.swift; sourceTree = "<group>"; };
 		1C237C3B1BC8235800A63965 /* YFProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFProfileController.swift; sourceTree = "<group>"; };
 		1C237C471BC82F3200A63965 /* YFYFoAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFYFoAuthViewController.swift; sourceTree = "<group>"; };
+		1C329CA21BCABA9400CF56F1 /* YFNewFutureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFNewFutureController.swift; sourceTree = "<group>"; };
 		1C3EE5FC1BC659960069BF55 /* MyWeiBoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeiBoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3EE5FF1BC659960069BF55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C3EE6061BC659960069BF55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */,
+				1C329CA21BCABA9400CF56F1 /* YFNewFutureController.swift */,
 			);
 			name = NewFuture;
 			path = Module/NewFuture;
@@ -461,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C237C411BC8235800A63965 /* YFVisitorView.swift in Sources */,
+				1C329CA31BCABA9400CF56F1 /* YFNewFutureController.swift in Sources */,
 				1C237C3C1BC8235800A63965 /* YFDiscoverController.swift in Sources */,
 				1C237C431BC8235800A63965 /* YFProfileController.swift in Sources */,
 				1C237C401BC8235800A63965 /* YFMainController.swift in Sources */,
