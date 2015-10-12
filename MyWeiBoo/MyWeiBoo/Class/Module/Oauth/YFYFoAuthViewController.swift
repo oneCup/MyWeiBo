@@ -60,6 +60,9 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
             print(code)
             //TODO: 换取TOKEN
             loadAccessToken(code)
+            //登录成功,进入欢迎界面
+            NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: true)
+            
         }else {
             //取消授权后,回到主界面
             close()
@@ -89,10 +92,6 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
             accout.loadUserInfo({ (error) -> () in
                 print(result)
             })
-//        YFNETWorkTools.sharedTools.loadUserInfo(accout.uid!, finished: { (result, error) -> () in
-//            
-//            print(result)
-//        })
             
         //3.保存用户信息
 //        accout.saveAccountInfo()

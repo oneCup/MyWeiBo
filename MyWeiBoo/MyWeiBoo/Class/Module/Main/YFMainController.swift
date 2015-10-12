@@ -62,7 +62,6 @@ class YFMainController: UITabBarController {
         
         addChildViewController(nav)
         
-        
     }
     
     //创建一个自定义视图(懒加载控件)

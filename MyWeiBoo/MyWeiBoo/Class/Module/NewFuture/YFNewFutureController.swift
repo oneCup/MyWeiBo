@@ -35,11 +35,8 @@ class YFNewFutureController: UICollectionViewController {
         self.collectionView!.registerClass(NewFeatureCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
     }
-    func clickStartButton(){
     
-        print("开始")
-    }
-
+    
     
     // MARK: UICollectionViewDataSource
 
@@ -98,8 +95,13 @@ class YFNewFutureController: UICollectionViewController {
         super.init(coder: aDecoder)
         prepareUI()
     }
+    //MARK:开始按钮的点击
+    func clickStartButton(){
         
-    /// 开始动画
+        NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: true)
+        }
+        
+    //MARK: 开始动画
     private func startButtonAnimi () {
             
         //使用transform进行动画设置
@@ -146,7 +148,7 @@ class YFNewFutureController: UICollectionViewController {
         
         //根据背景图片自动调整大小
         button.hidden = true
-        button.addTarget(self, action: "clickStartButton", forControlEvents: UIControlEvents.TouchDragInside)
+        button.addTarget(self, action: "clickStartButton", forControlEvents: UIControlEvents.TouchUpInside)
         button.userInteractionEnabled = false
         return button
         

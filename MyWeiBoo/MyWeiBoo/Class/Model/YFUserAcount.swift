@@ -10,6 +10,12 @@ import UIKit
 
 class YFUserAcount: NSObject,NSCoding{
     
+ /// 创建用户标记的getter方法
+    class var userLogin:Bool {
+        
+        return LoadAccout() != nil
+    }
+    
     ///  access_token 用于调用access_token，接口获取授权后的access token。
     var access_token: String?
     ///  expires_in access_token的生命周期，单位是秒数\

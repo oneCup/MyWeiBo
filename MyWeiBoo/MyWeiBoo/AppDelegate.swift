@@ -7,6 +7,7 @@
 //
 
 import UIKit
+let YFRootViewControollerSwithNotifacation = "YFRootViewControollerSwithNotifacation"
 
 @UIApplicationMain
 
@@ -17,22 +18,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //注册一个通知中心
+        
+       NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchViewController:", name: YFRootViewControollerSwithNotifacation, object: nil)
+        
         //设置外观对象,一旦设置全局共享,越早设置越好
         setApperance()
-        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
         window?.backgroundColor = UIColor.whiteColor()
-        
-//        window?.rootViewController = YFMainController()
-//        window?.rootViewController = YFWelcomViewController()
-        window?.rootViewController = YFNewFutureController()
-        
+        window?.rootViewController = defultViewController()
         window?.makeKeyAndVisible()
-
-        // Override point for customization after application launch.
         return true
     }
+    
+    //程序结束才会被只执行,不写不会影响程序的执行,因为通知也是一个单例
+    deinit {
+    //注销一个通知 - 知识一个习惯
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    ///  切换控制器(通过通知实现)
+    func switchViewController(n:NSNotification) {
+
+        print("切换控制器\(n)")
+        //判断是否为true
+        let mainVC = n.object as! Bool
+        
+        window?.rootViewController = mainVC ? YFMainController() : YFWelcomViewController()
+        
+     }
+    
+    ///  返回默认的控制器
+    private func defultViewController() ->UIViewController {
+        
+        //1.判断用户,没有登录则进入主界面
+        if !YFUserAcount.userLogin {
+            return YFMainController()
+        }
+        //2.判断是否有更新版本,有,则进入新特性界面,没有则进入欢迎界面
+        return isUpDateVersion() ? YFNewFutureController() : YFWelcomViewController()
+    }
+    
+///  判断版本号
+    
+    func isUpDateVersion()->Bool {
+    
+        //1.获取软件的版本号
+        let currentVersion = Double(NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String)!
+        //2.获取沙盒文件中的版本号
+        //2.1设置软件版本的key
+        let sandBoxVersionkey = "sandBoxVersionkey"
+        //2.2 从沙盒中获取版本
+        let sandBoxVersion = NSUserDefaults.standardUserDefaults().doubleForKey(sandBoxVersionkey)
+        //2.3将版本存放在沙盒中
+        NSUserDefaults.standardUserDefaults().setDouble(currentVersion, forKey: sandBoxVersionkey)
+        //3.返回比较结果
+        return currentVersion > sandBoxVersion
+    
+    }
+    
     //设置外观对象
     func setApperance() {
         
