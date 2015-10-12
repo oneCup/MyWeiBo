@@ -53,7 +53,7 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
         print(request.URL?.query)
         
         if let query = request.URL?.query where query.hasPrefix("code=") {
-            print("获取授权")
+            print("获取授权")   
             //获取授权码
             //query.substringFromIndex("code=".endIndex)截取字符串从"code="最后一个字符串开始
            let code =  query.substringFromIndex("code=".endIndex)
@@ -61,7 +61,7 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
             //TODO: 换取TOKEN
             loadAccessToken(code)
             //登录成功,进入欢迎界面
-            NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: true)
+            NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: false)
             
         }else {
             //取消授权后,回到主界面

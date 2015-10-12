@@ -25,12 +25,15 @@ class YFWelcomViewController: UIViewController {
             nameLable.sizeToFit()
         }
         
+        
 //        startAnimated()
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         startAnimated()
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +56,8 @@ class YFWelcomViewController: UIViewController {
             
             }){ (_) -> Void in
                 
+            //发送通知
+            NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: true)
         }
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class YFBaseTableViewController: UITableViewController, VisitorLoginDelegate {
     
     //设置用户登录标记
-    var userLogon = false
+    var userLogon = YFUserAcount.userLogin
     
     //设置视图属性
     var VisitorView:YFVisitorView?
@@ -20,10 +20,8 @@ class YFBaseTableViewController: UITableViewController, VisitorLoginDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // 根据用户是否登录判断是否替换根式图
         userLogon ? super.loadView() : setupVisitorView()
-        
 
             }
     

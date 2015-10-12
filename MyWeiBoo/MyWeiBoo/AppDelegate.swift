@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("切换控制器\(n)")
         //判断是否为true
         let mainVC = n.object as! Bool
-        
+        print(mainVC)
         window?.rootViewController = mainVC ? YFMainController() : YFWelcomViewController()
         
      }
