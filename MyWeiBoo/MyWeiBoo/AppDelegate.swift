@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      }
     
     ///  返回默认的控制器
-    private func defultViewController() ->UIViewController {
+    private func defultViewController() -> UIViewController {
         
         //1.判断用户,没有登录则进入主界面
         if !YFUserAcount.userLogin {

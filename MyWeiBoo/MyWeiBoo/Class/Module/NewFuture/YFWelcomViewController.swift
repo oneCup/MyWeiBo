@@ -18,13 +18,15 @@ class YFWelcomViewController: UIViewController {
         //加载用户头像
         if let urlString = YFUserAcount.sharedAcount?.avatar_large {
             iconView.sd_setImageWithURL(NSURL(string: urlString)!)
-            print("2---->\(urlString)")
+            print("2---->\(urlString)")  
+            
         }
         
         //加载用户名称
         if let name = YFUserAcount.sharedAcount?.name {
-            nameLable.text = name
-            nameLable.sizeToFit()
+            lable.text = name + "\n\n" + lable.text!
+//            nameLable.text = name
+//            nameLable.sizeToFit()
         }
 
     }
@@ -66,7 +68,7 @@ class YFWelcomViewController: UIViewController {
     
         view.addSubview(backImageView)
         view.addSubview(iconView)
-        iconView.addSubview(nameLable)
+//        iconView.addSubview(nameLable)
         view.addSubview(lable)
         
         //1 设置布局
@@ -85,10 +87,10 @@ class YFWelcomViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute:NSLayoutAttribute.Top, multiplier: 1.0, constant: 160))
         constanceH = view.constraints.last
         
-        //设置昵称标签
-        nameLable.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+//        //设置昵称标签
+//        nameLable.translatesAutoresizingMaskIntoConstraints = false
+//        view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+//        view.addConstraint(NSLayoutConstraint(item: nameLable, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: iconView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 
         //3.设置文字标签
         
@@ -116,19 +118,21 @@ class YFWelcomViewController: UIViewController {
     private lazy var lable : UILabel = {
         let lable = UILabel()
         lable.text = "欢迎归来"
+        lable.numberOfLines = 3
+        lable.textAlignment = NSTextAlignment.Center
         lable.sizeToFit()
         return lable
     }()
    
-    // 昵称lable
-    private lazy var nameLable: UILabel = {
-    
-        let nameLable = UILabel()
-        
-        nameLable.font = UIFont.systemFontOfSize(14)
-        nameLable.textAlignment = NSTextAlignment.Center
-        nameLable.numberOfLines = 2
-        
-        return nameLable
-    }()
+//    // 昵称lable
+//    private lazy var nameLable: UILabel = {
+//    
+//        let nameLable = UILabel()
+//        
+//        nameLable.font = UIFont.systemFontOfSize(14)
+//        nameLable.textAlignment = NSTextAlignment.Center
+//        nameLable.numberOfLines = 2
+//        
+//        return nameLable
+//    }()
 }

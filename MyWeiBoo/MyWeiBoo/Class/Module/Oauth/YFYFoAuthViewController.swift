@@ -82,22 +82,17 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
             }
             
         //字典中加载用户信息
-           let user = YFUserAcount(dict:result!)
-            user.loadUserInfo({ (error) -> () in
+            YFUserAcount(dict:result!).loadUserInfo({ (error) -> () in
                 if error != nil {
                     self.netError()
                     return
                 }
+                //通知
+                NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: false)
+                self.close()
             })
-//        YFUserAcount(dict:result!).loadUserInfo({ (error) -> () in
-//           self.netError()
-//        })
-            //通知
+
             
-            
-        NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: false)
-            
-            self.close()
         }
     }
     
@@ -106,8 +101,10 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
     
         SVProgressHUD.showInfoWithStatus("您的网络不给力")
         //网络不给力时,返回主界面(延时)
+        // 延时一段时间再关闭
+
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC))
-        dispatch_after(when, dispatch_get_main_queue()){
+        dispatch_after(when, dispatch_get_main_queue()) {
             self.close()
         }
         return
