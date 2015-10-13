@@ -18,7 +18,7 @@ class YFWelcomViewController: UIViewController {
         //加载用户头像
         if let urlString = YFUserAcount.sharedAcount?.avatar_large {
             iconView.sd_setImageWithURL(NSURL(string: urlString)!)
-            print("2---->\(urlString)")  
+            print("2---->\(urlString)")
             
         }
         

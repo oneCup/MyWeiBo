@@ -70,23 +70,55 @@ class YFNETWorkTools: AFHTTPSessionManager {
 
     
     func loadUserInfo(uid:String,finished: YFNetFinishedBack) {
-        // 判断沙盒中Token是否存在
-        if YFUserAcount.sharedAcount?.access_token == nil {
-            
-            //回调错误,token为空
-            let error = YFNetWorkError.emptyTokenError.error()
-            print(error)
-            finished(result: nil, error: YFNetWorkError.emptyTokenError.error())
-            return;
+        
+        
+        guard var params = tokenDict(finished) else {
+        
+            return
         }
         let url = "2/users/show.json"
-        //向服务器发送请求
-        let params: [String: AnyObject] = ["access_token": YFUserAcount.sharedAcount!.access_token!, "uid": uid]
+        
+         params["uid"] = uid
+  
         // 发送网络请求请求网络数据
         // 提示：如果参数不正确，首先用 option + click 确认参数类型
        request(YFMethod.GET, urlString: url, params: params, finished: finished)
+       
     }
     
+    
+    //MARK:加载微博数据
+    func loadStatus(finished:YFNetFinishedBack) {
+        
+        //判断Token是否为空
+        guard let params = tokenDict(finished) else {
+            return
+        
+        }
+        let urlString = "2/statuses/home_timeline.json"
+        
+        //发送网络请求
+        request(YFMethod.GET, urlString: urlString, params: params, finished: finished)
+    }
+    
+    
+//MARK:检查并生成Token字典
+    private func tokenDict(finshed:YFNetFinishedBack) ->[String: AnyObject]? {
+    
+        //判断Token是否为空
+        if YFUserAcount.sharedAcount?.access_token == nil {
+        //错误回调
+            let error = YFNetWorkError.emptyDataError.error()
+            
+        print(error)
+            
+            finshed(result: nil, error: error)
+         
+            return nil
+        }
+    
+        return ["access_token":YFUserAcount.sharedAcount!.access_token!]
+    }
     
 /************************加载用户信息***************************/
     
@@ -103,6 +135,10 @@ class YFNETWorkTools: AFHTTPSessionManager {
     
     
 /***********************加载Token****************************/
+    
+ /***********************加载网络数据****************************/
+
+    
     
 //MARK:加载Token
 

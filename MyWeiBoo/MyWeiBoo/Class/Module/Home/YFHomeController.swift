@@ -14,7 +14,19 @@ class YFHomeController: YFBaseTableViewController {
         super.viewDidLoad()
         
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
+        loaddata()
+       
+    }
+    
+    func loaddata() {
+    
+        
+        YFNETWorkTools.sharedTools.loadStatus { (result, error) -> () in
+            
+            print(result)
+        }
 
+    
     }
 
     override func didReceiveMemoryWarning() {
