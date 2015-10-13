@@ -33,13 +33,10 @@ class YFNewFutureController: UICollectionViewController {
         super.viewDidLoad()
        
         self.collectionView!.registerClass(NewFeatureCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
     }
     
     
-    
     // MARK: UICollectionViewDataSource
-
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -103,7 +100,6 @@ class YFNewFutureController: UICollectionViewController {
         
     //MARK: 开始动画
     private func startButtonAnimi () {
-            
         //使用transform进行动画设置
         startButton.hidden = false
         //设置从0开始缩放
@@ -114,7 +110,6 @@ class YFNewFutureController: UICollectionViewController {
             //回复还原位置
             self.startButton.transform = CGAffineTransformMakeScale(1, 1)
             }) { (_) -> Void in
-                
              //设置按钮可用
             self.startButton.userInteractionEnabled = true
         }
