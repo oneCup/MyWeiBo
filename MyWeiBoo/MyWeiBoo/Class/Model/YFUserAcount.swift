@@ -85,6 +85,7 @@ class YFUserAcount: NSObject,NSCoding{
 //加载用户信息 - 调用方法,异步获取用户附加信息,保存当前用户
     
     func loadUserInfo(finished:(error:NSError?)->()) {
+        print("22222")
         //请求用户信息
         YFNETWorkTools.sharedTools.loadUserInfo(uid!) { (result, error) -> () in
             if error != nil {
@@ -96,8 +97,11 @@ class YFUserAcount: NSObject,NSCoding{
             //设置用户信息
             self.name = result!["name"] as? String
             self.avatar_large = result!["avatar_large"] as? String
+            print("1----->\(self.avatar_large)")
             //保存用户信息
             self.saveAccountInfo()
+            
+            print(YFUserAcount.sharedAcount)
             }
     }
     

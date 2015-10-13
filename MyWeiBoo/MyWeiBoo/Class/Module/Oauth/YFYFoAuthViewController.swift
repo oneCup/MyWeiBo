@@ -58,14 +58,17 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
            let code =  query.substringFromIndex("code=".endIndex)
             print("获取授权\(code)")
             loadAccessToken(code)
-            //登录成功,进入欢迎界面
-            NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: false)
+            
         }else {
             //取消授权后,回到主界面
             close()
         }
         return false
     }
+
+    
+    
+    
 
 /**********************************加载Token****************************/
 //MARK:加载授权密码
@@ -77,10 +80,24 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
             self.netError()
             return
             }
+            
         //字典中加载用户信息
-        YFUserAcount(dict:result!).loadUserInfo({ (error) -> () in
-           self.netError()
-        })
+           let user = YFUserAcount(dict:result!)
+            user.loadUserInfo({ (error) -> () in
+                if error != nil {
+                    self.netError()
+                    return
+                }
+            })
+//        YFUserAcount(dict:result!).loadUserInfo({ (error) -> () in
+//           self.netError()
+//        })
+            //通知
+            
+            
+        NSNotificationCenter.defaultCenter().postNotificationName(YFRootViewControollerSwithNotifacation, object: false)
+            
+            self.close()
         }
     }
     
@@ -102,7 +119,6 @@ class YFYFoAuthViewController: UIViewController,UIWebViewDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

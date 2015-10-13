@@ -16,17 +16,17 @@ class YFWelcomViewController: UIViewController {
         
         prarareUI()
         //加载用户头像
-        if let urlString = YFUserAcount.LoadAccout()?.avatar_large {
+        if let urlString = YFUserAcount.sharedAcount?.avatar_large {
             iconView.sd_setImageWithURL(NSURL(string: urlString)!)
+            print("2---->\(urlString)")
         }
+        
         //加载用户名称
-        if let name = YFUserAcount.LoadAccout()?.name {
+        if let name = YFUserAcount.sharedAcount?.name {
             nameLable.text = name
             nameLable.sizeToFit()
         }
-        
-        
-//        startAnimated()
+
     }
     
     override func viewDidAppear(animated: Bool) {

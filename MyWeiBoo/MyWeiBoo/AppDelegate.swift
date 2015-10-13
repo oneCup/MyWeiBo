@@ -17,17 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+         print(NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!.stringByAppendingString("/account.plist"))
         
         //注册一个通知中心
         
        NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchViewController:", name: YFRootViewControollerSwithNotifacation, object: nil)
-        print(YFUserAcount.sharedAcount)
+//        print(YFUserAcount.sharedAcount)
         //设置外观对象,一旦设置全局共享,越早设置越好
         setApperance()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.backgroundColor = UIColor.whiteColor()
         window?.rootViewController = defultViewController()
         window?.makeKeyAndVisible()
+        
+       
         return true
     }
     
