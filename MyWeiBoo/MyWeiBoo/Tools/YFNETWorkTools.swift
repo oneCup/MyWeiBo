@@ -92,6 +92,37 @@ class YFNETWorkTools: AFHTTPSessionManager {
         
     }
 
+    //MARK:封装AFN GET方法
+    /************************封装AFN GET方法****************************/
+    
+    /// GET 请求
+    ///
+    /// :param: urlString URL 地址
+    /// :param: params    参数字典
+    /// :param: finished  完成回调
+    private func RequePOST(urlString:String,params:[String:AnyObject],finished:YFNetFinishedBack){
+        
+        GET(urlString, parameters: params, success: { (_ , JSON) -> Void in
+            
+            if let result = JSON as? [String: AnyObject]{
+                //有结果的回调
+                finished(result: result, error: nil)
+            }else{
+                print("没有数据 POST Request \(urlString)")
+                // 没有错误，同时没有结果
+                print("没有数据 POST Request \(urlString)")
+                
+                finished(result: nil, error: YFNetWorkError.emptyTokenError.error())
+            }
+            
+            }) { (_ , error) -> Void in
+                
+                print(error)
+                finished(result: nil, error: error)
+        }
+        
+    }
+
     
     // MARK: - 加载用户数据
     
@@ -141,14 +172,16 @@ class YFNETWorkTools: AFHTTPSessionManager {
                     "grant_type":"authorization_code",
                     "code":code,]
         
-            POST(urlstring, parameters: params, success: { (_, JSON) -> Void in
-                
-                print("NET------>\(__FUNCTION__)+\(JSON)")
-                finished(result:JSON as? [String: AnyObject],error:nil)
-                }) { (_, error) -> Void in
-                    print(error)
-                finished(result: nil, error: error)
-        }
-        
+        RequePOST(urlstring, params: params, finished: finished)
+//        
+//            POST(urlstring, parameters: params, success: { (_, JSON) -> Void in
+//                
+//                print("NET------>\(__FUNCTION__)+\(JSON)")
+//                finished(result:JSON as? [String: AnyObject],error:nil)
+//                }) { (_, error) -> Void in
+//                    print(error)
+//                finished(result: nil, error: error)
+//        }
+//        
         }
 }
