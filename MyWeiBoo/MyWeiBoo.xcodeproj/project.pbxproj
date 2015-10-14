@@ -23,6 +23,13 @@
 		1C3EE6151BC659960069BF55 /* MyWeiBooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */; };
 		1C3EE6201BC659960069BF55 /* MyWeiBooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */; };
 		1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA41BCD713C009B99BB /* YFStatues.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA61BCD74D8009B99BB /* YFUser.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2AAB1BCDD9BD009B99BB /* YFTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AAA1BCDD9BD009B99BB /* YFTopView.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2AAD1BCDD9D1009B99BB /* YFButtomview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AAC1BCDD9D1009B99BB /* YFButtomview.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2AAF1BCDDA2C009B99BB /* YFStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AAE1BCDDA2C009B99BB /* YFStateCell.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2AB71BCE2D57009B99BB /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AB61BCE2D57009B99BB /* UILabel+Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		1C9D2ABE1BCEAE5D009B99BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		1CA081381BC9746B00F7BACD /* YFUserAcount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA081371BC9746B00F7BACD /* YFUserAcount.swift */; settings = {ASSET_TAGS = (); }; };
 		1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		FB4EB9CBC62A893C65CAC19C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD087CB8C368301DDD53C684 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -68,6 +75,13 @@
 		1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeiBooUITests.swift; sourceTree = "<group>"; };
 		1C3EE6211BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		1C9D2AA41BCD713C009B99BB /* YFStatues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatues.swift; sourceTree = "<group>"; };
+		1C9D2AA61BCD74D8009B99BB /* YFUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUser.swift; sourceTree = "<group>"; };
+		1C9D2AAA1BCDD9BD009B99BB /* YFTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFTopView.swift; sourceTree = "<group>"; };
+		1C9D2AAC1BCDD9D1009B99BB /* YFButtomview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFButtomview.swift; sourceTree = "<group>"; };
+		1C9D2AAE1BCDDA2C009B99BB /* YFStateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStateCell.swift; sourceTree = "<group>"; };
+		1C9D2AB61BCE2D57009B99BB /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		1CA081371BC9746B00F7BACD /* YFUserAcount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUserAcount.swift; sourceTree = "<group>"; };
 		1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFWelcomViewController.swift; sourceTree = "<group>"; };
 		792EDDD86B16134439FEB5BC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				1CA081371BC9746B00F7BACD /* YFUserAcount.swift */,
+				1C9D2AA41BCD713C009B99BB /* YFStatues.swift */,
+				1C9D2AA61BCD74D8009B99BB /* YFUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +160,9 @@
 			isa = PBXGroup;
 			children = (
 				1C237C321BC8235800A63965 /* YFHomeController.swift */,
+				1C9D2AAA1BCDD9BD009B99BB /* YFTopView.swift */,
+				1C9D2AAC1BCDD9D1009B99BB /* YFButtomview.swift */,
+				1C9D2AAE1BCDDA2C009B99BB /* YFStateCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -240,6 +259,8 @@
 			children = (
 				1C237C2A1BC8221B00A63965 /* YFNETWorkTools.swift */,
 				1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */,
+				1C9D2AB61BCE2D57009B99BB /* UILabel+Extension.swift */,
+				1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -338,6 +359,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = YF;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "李永方";
 				TargetAttributes = {
@@ -471,15 +493,22 @@
 				1C237C3C1BC8235800A63965 /* YFDiscoverController.swift in Sources */,
 				1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */,
 				1C237C431BC8235800A63965 /* YFProfileController.swift in Sources */,
+				1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */,
 				1C237C401BC8235800A63965 /* YFMainController.swift in Sources */,
+				1C9D2AAB1BCDD9BD009B99BB /* YFTopView.swift in Sources */,
+				1C9D2AAD1BCDD9D1009B99BB /* YFButtomview.swift in Sources */,
 				1C237C481BC82F3200A63965 /* YFYFoAuthViewController.swift in Sources */,
 				1C237C3D1BC8235800A63965 /* YFHomeController.swift in Sources */,
 				1C237C421BC8235800A63965 /* YFMessageController.swift in Sources */,
+				1C9D2AB71BCE2D57009B99BB /* UILabel+Extension.swift in Sources */,
 				1CA081381BC9746B00F7BACD /* YFUserAcount.swift in Sources */,
+				1C9D2AAF1BCDDA2C009B99BB /* YFStateCell.swift in Sources */,
 				1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */,
+				1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */,
 				1C237C3E1BC8235800A63965 /* YFBaseTableViewController.swift in Sources */,
 				1C237C2B1BC8221B00A63965 /* YFNETWorkTools.swift in Sources */,
 				1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */,
+				1C9D2ABE1BCEAE5D009B99BB /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +584,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -592,6 +622,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -602,11 +633,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyWeiBoo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.heima-lyf1.MyWeiBoo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -616,11 +651,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyWeiBoo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.heima-lyf1.MyWeiBoo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
