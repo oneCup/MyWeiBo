@@ -18,6 +18,7 @@ class YFHomeController: YFBaseTableViewController {
         }
         
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,32 @@ class YFHomeController: YFBaseTableViewController {
         
         cell.status = status![indexPath.row]
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        //1.判断模型中是否缓存了行高
+        
+        let statuse = status![indexPath.row]
+        
+            if let h = statuse.rowHeight {
+                
+                print("缓存行高\(h)")
+        
+            return h
+        
+        }
+        
+        // 2. 获取 cell - dequeueReusableCellWithIdentifier 带 indexPath 的函数会调用计算行高的方法
+        // 会造成死循环，在不同版本的 Xcode 中 行高的计算次数不一样！尽量要优化！
+        // 如果不做处理，会非常消耗性能！
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? YFStateCell
+        //记录并返回行高值
+        statuse.rowHeight = cell?.rowHeight(statuse)
+        print( statuse.rowHeight)
+        
+        return statuse.rowHeight!
+        
     }
     
 }

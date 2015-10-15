@@ -41,7 +41,7 @@ class YFTopView: UIView {
     //布局控件
     func setUpUI() {
         
-//        addSubview(UpTopView)
+        addSubview(UpTopView)
     //加载控件
         addSubview(iconView)
         addSubview(nameLable)
@@ -50,9 +50,9 @@ class YFTopView: UIView {
         addSubview(memIconView)
         addSubview(VipIconView)
     //布局控件
-//        UpTopView.ff_AlignVertical(type:ff_AlignType.TopLeft, referView:self, size: CGSize(width: UIScreen.mainScreen().bounds.size.width, height: 10))
+        UpTopView.ff_AlignInner(type:ff_AlignType.TopLeft, referView:self, size: CGSize(width: UIScreen.mainScreen().bounds.size.width, height: 10),offset: CGPoint(x: 0, y: 8))
         
-        iconView.ff_AlignInner(type:ff_AlignType.BottomLeft, referView: self, size: CGSize(width: 35, height: 35),offset: CGPoint(x: 8, y: 0))
+        iconView.ff_AlignVertical(type:ff_AlignType.BottomLeft, referView: UpTopView, size: CGSize(width: 35, height: 35),offset: CGPoint(x: 8, y: 8))
         nameLable.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: iconView, size: nil, offset: CGPoint(x: 8, y: 0))
         timeLabel.ff_AlignHorizontal(type: ff_AlignType.BottomRight, referView: iconView, size:nil, offset: CGPoint(x: 8, y: 0))
         sourceLabel.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: timeLabel, size: nil, offset: CGPoint(x: 8, y: 0))

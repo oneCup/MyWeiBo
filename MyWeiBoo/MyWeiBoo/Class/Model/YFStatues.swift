@@ -18,16 +18,37 @@ class YFStatues: NSObject {
     var text: String?
     /// 微博来源
     var source: String?
-    /// 配图数组
-    var pic_urls: [[String: AnyObject]]?
+    /// 显示微博所需的行高
+    var rowHeight: CGFloat?
+    /// 配图数组(字典类型)
+    var pic_urls: [[String: AnyObject]]? {
+    
+        didSet{
+            //判断字典中是否有值
+            if pic_urls?.count == 0 {
+        
+                return
+            }
+            //遍历生成字典
+            PictursURL = [NSURL]()
+            
+            for dict in pic_urls! {
+            
+                if let url = dict["thumbnail_pic"] as? String {
+                    
+                    PictursURL?.append(NSURL(string: url)!)
+                }
+
+            }
+        }
+    
+    }
+    ///  配图的
+    var PictursURL: [NSURL]?
     /// 用户
     var user: YFUser?
-    
-    
-    
-    //MARK:字典转模型
-    
-    class func loadStatus(finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
+     //MARK:字典转模型
+      class func loadStatus(finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
         
         YFNETWorkTools.sharedTools.loadStatus { (result, error) -> () in
             
