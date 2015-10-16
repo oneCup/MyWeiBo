@@ -87,7 +87,7 @@ extension YFPictureView: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(statusPictureViewCellID, forIndexPath: indexPath) as!YFPictureViewCell
-        cell.backgroundColor = UIColor.redColor()
+//        cell.backgroundColor = UIColor.redColor()
         
         cell.imageURL = status!.PictursURL![indexPath.item]
         

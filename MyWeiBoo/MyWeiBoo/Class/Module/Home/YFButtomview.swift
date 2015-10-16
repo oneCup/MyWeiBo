@@ -27,7 +27,7 @@ class YFButtomview: UIView {
         addSubview(LikeButton)
         
         //设置布局(平铺)
-        backgroundColor = UIColor.orangeColor()
+        backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         ff_HorizontalTile([forwardButton,comentButton,LikeButton], insets:UIEdgeInsetsZero)
 
     }

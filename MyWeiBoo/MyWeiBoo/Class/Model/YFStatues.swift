@@ -30,21 +30,32 @@ class YFStatues: NSObject {
                 return
             }
             //遍历生成字典
-            PictursURL = [NSURL]()
+            stortedPictureURL = [NSURL]()
             
             for dict in pic_urls! {
             
                 if let url = dict["thumbnail_pic"] as? String {
                     
-                    PictursURL?.append(NSURL(string: url)!)
+                    stortedPictureURL?.append(NSURL(string: url)!)
                 }
 
             }
         }
     
     }
+    //设置转发微博的属性值
+    var retweeted_status:YFStatues?
+    //设置一个保存配图的URL数组
+    var stortedPictureURL: [NSURL]?
+
     ///  配图的
-    var PictursURL: [NSURL]?
+    var PictursURL: [NSURL]? {
+        
+    retweeted_status == nil ? stortedPictureURL : retweeted_status?.stortedPictureURL
+        
+        return stortedPictureURL
+    
+    }
     /// 用户
     var user: YFUser?
      //MARK:字典转模型
@@ -54,7 +65,7 @@ class YFStatues: NSObject {
             
             if(error != nil) {
             
-//            finished(datalist: nil, error: error)
+                finished(datalist: nil, error: error)
                 
                 return
             
@@ -76,7 +87,7 @@ class YFStatues: NSObject {
                 finished(datalist: list, error: nil)
             }else {
             
-            finished(datalist: nil, error:nil)
+                finished(datalist: nil, error:nil)
             
             
             }
@@ -99,7 +110,19 @@ class YFStatues: NSObject {
             
                 user = YFUser(dict: dict)
             }
+            
+            
             return
+        }
+        
+        if key == "retweeted_status" {
+        
+            if let dict = value as? [String: AnyObject] {
+            
+                retweeted_status = YFStatues(dict: dict)
+            }
+            return
+        
         }
         //TODO:为什么要写在后面
         super.setValue(value, forKey: key)
@@ -108,7 +131,7 @@ class YFStatues: NSObject {
     
     
     override var description: String {
-        let keys = ["created_at", "id", "text", "source", "pic_urls"]
+        let keys = ["created_at", "id", "text", "source", "pic_urls","retweeted_status"]
         
         return "\(dictionaryWithValuesForKeys(keys))"
     }

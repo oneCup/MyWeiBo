@@ -22,6 +22,7 @@
 		1C3EE6071BC659960069BF55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C3EE6061BC659960069BF55 /* Assets.xcassets */; };
 		1C3EE6151BC659960069BF55 /* MyWeiBooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */; };
 		1C3EE6201BC659960069BF55 /* MyWeiBooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */; };
+		1C7683F91BD01F21006E6BA2 /* YFForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7683F81BD01F21006E6BA2 /* YFForwardCell.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA41BCD713C009B99BB /* YFStatues.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA61BCD74D8009B99BB /* YFUser.swift */; settings = {ASSET_TAGS = (); }; };
@@ -75,6 +76,7 @@
 		1C3EE61B1BC659960069BF55 /* MyWeiBooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeiBooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeiBooUITests.swift; sourceTree = "<group>"; };
 		1C3EE6211BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C7683F81BD01F21006E6BA2 /* YFForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFForwardCell.swift; sourceTree = "<group>"; };
 		1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		1C9D2AA41BCD713C009B99BB /* YFStatues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatues.swift; sourceTree = "<group>"; };
 		1C9D2AA61BCD74D8009B99BB /* YFUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUser.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				1C9D2AAC1BCDD9D1009B99BB /* YFButtomview.swift */,
 				1C9D2AAE1BCDDA2C009B99BB /* YFStateCell.swift */,
 				1C9D2AC11BCEC064009B99BB /* YFPictureView.swift */,
+				1C7683F81BD01F21006E6BA2 /* YFForwardCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */,
 				1C237C401BC8235800A63965 /* YFMainController.swift in Sources */,
 				1C9D2AAB1BCDD9BD009B99BB /* YFTopView.swift in Sources */,
+				1C7683F91BD01F21006E6BA2 /* YFForwardCell.swift in Sources */,
 				1C9D2AAD1BCDD9D1009B99BB /* YFButtomview.swift in Sources */,
 				1C237C481BC82F3200A63965 /* YFYFoAuthViewController.swift in Sources */,
 				1C237C3D1BC8235800A63965 /* YFHomeController.swift in Sources */,

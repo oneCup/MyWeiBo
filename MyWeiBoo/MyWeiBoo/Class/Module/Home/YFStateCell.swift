@@ -14,10 +14,14 @@ class YFStateCell: UITableViewCell {
     
     ///  图片宽度约束
     var pictureWidthCons :NSLayoutConstraint?
+    
     ///  图片高度约束
     var pictureHeightCons : NSLayoutConstraint?
-    /// 设置行高属性
-    var rowHeight: CGFloat?
+    
+    /// 约束piv与ContentView防止当picture不存在时,contentView与底部存在两倍的间距
+    var pictureHeightTopCons : NSLayoutConstraint?
+
+
     
     //设置微博数据
     var status : YFStatues?  {
@@ -28,6 +32,7 @@ class YFStateCell: UITableViewCell {
             ContentLable.text = status?.text ?? ""
             pictureWidthCons?.constant = pictureView.bounds.size.width
             pictureHeightCons?.constant = pictureView.bounds.size.height
+            pictureHeightTopCons?.constant == 0 ? 0 :stateCellMargin
             
                   }
     }
@@ -48,7 +53,7 @@ class YFStateCell: UITableViewCell {
         // Configure the view for the selected state
     }
     //设置UI界面
-    private func setUpUI() {
+    func setUpUI() {
         
         contentView.addSubview(TopView)
         contentView.addSubview(ContentLable)
@@ -62,36 +67,37 @@ class YFStateCell: UITableViewCell {
         ContentLable.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: TopView, size: nil, offset: CGPoint(x:stateCellMargin , y: stateCellMargin))
             //宽度
         contentView.addConstraint(NSLayoutConstraint(item:ContentLable, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: -2 * stateCellMargin))
-        //3.多图视图
-        let cons = pictureView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: ContentLable, size:CGSize(width: 290, height: 290),offset: CGPoint(x: 0, y: stateCellMargin))
-        //记录约束属性
-        pictureWidthCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Width)
-        pictureHeightCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Height)
+//        //3.多图视图
+//        let cons = pictureView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: ContentLable, size:CGSize(width: 290, height: 290),offset: CGPoint(x: 0, y: stateCellMargin))
+//        //记录约束属性
+//        pictureWidthCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Width)
+//        pictureHeightCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Height)
+//        pictureHeightTopCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Top)
         
         
         //3.底部视图
         bottomView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: pictureView, size: CGSize(width: UIScreen.mainScreen().bounds.width, height:44), offset: CGPoint(x: -stateCellMargin, y: stateCellMargin))
-//       contentView.addConstraint(NSLayoutConstraint(item: bottomView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
+       
     
     }
     
     //Mark:懒加载控件视图
    //顶部视图
-    private lazy var TopView: YFTopView = YFTopView()
+     var TopView: YFTopView = YFTopView()
     //设置文本视图
-    private lazy var ContentLable: UILabel = {
+     var ContentLable: UILabel = {
     //设置内容标签
-        let lable = UILabel(color: UIColor.darkGrayColor(), fontSize: 12)
+     let lable = UILabel(color: UIColor.darkGrayColor(), fontSize: 12)
         lable.numberOfLines = 0
 //        lable.sizeToFit()
         //TODO:为什么要使用这句话
-//        lable.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 2 * 8
+        lable.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 2 * 8
         
         return lable
-        }()
+    }()
 
 /// 图片行高
-    func rowHeight(status:YFStatues)-> CGFloat {
+      func rowHeight(status:YFStatues)-> CGFloat {
         //设置属性
         self.status = status
         //强制更新布局
@@ -99,13 +105,13 @@ class YFStateCell: UITableViewCell {
         layoutIfNeeded()
         //返回底部视图
         return CGRectGetMaxY(bottomView.frame)
-        }
+    }
    
     
     //底部视图
-    private lazy var bottomView:YFButtomview = YFButtomview()
+    lazy var bottomView:YFButtomview = YFButtomview()
     
     //多图视图
-    private lazy var pictureView:YFPictureView = YFPictureView()
+    lazy var pictureView:YFPictureView = YFPictureView()
     
    }

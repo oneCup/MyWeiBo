@@ -27,7 +27,8 @@ class YFHomeController: YFBaseTableViewController {
        
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
         loaddata()
-        tableView.registerClass(YFStateCell.self, forCellReuseIdentifier: "Cell")
+        tableView.registerClass(YFForwardCell.self, forCellReuseIdentifier: "Cell")
+
         // 设置表格的预估行高(方便表格提前计算预估行高，提高性能) - 尽量准确，能够提高性能
         // 能够减少调用行高的次数
 //        tableView.estimatedRowHeight = 300
@@ -36,6 +37,7 @@ class YFHomeController: YFBaseTableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         // 取消分割线
 //        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+//        loaddata()
         
     }
     
@@ -61,16 +63,18 @@ class YFHomeController: YFBaseTableViewController {
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        print(status?.count)
 
         return status?.count ?? 0
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! YFStateCell
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! YFForwardCell
         
         // 要求必须注册原型cell, storyboard，register Class
-        
         cell.status = status![indexPath.row]
         return cell
     }
@@ -82,9 +86,7 @@ class YFHomeController: YFBaseTableViewController {
         let statuse = status![indexPath.row]
         
             if let h = statuse.rowHeight {
-                
                 print("缓存行高\(h)")
-        
             return h
         
         }
@@ -92,10 +94,13 @@ class YFHomeController: YFBaseTableViewController {
         // 2. 获取 cell - dequeueReusableCellWithIdentifier 带 indexPath 的函数会调用计算行高的方法
         // 会造成死循环，在不同版本的 Xcode 中 行高的计算次数不一样！尽量要优化！
         // 如果不做处理，会非常消耗性能！
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? YFStateCell
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? YFForwardCell
+        
         //记录并返回行高值
         statuse.rowHeight = cell?.rowHeight(statuse)
-        print( statuse.rowHeight)
+        
+        print( "加载行高\(statuse.rowHeight)")
         
         return statuse.rowHeight!
         

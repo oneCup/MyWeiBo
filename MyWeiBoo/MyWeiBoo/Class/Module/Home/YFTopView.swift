@@ -50,7 +50,7 @@ class YFTopView: UIView {
         addSubview(memIconView)
         addSubview(VipIconView)
     //布局控件
-        UpTopView.ff_AlignInner(type:ff_AlignType.TopLeft, referView:self, size: CGSize(width: UIScreen.mainScreen().bounds.size.width, height: 10),offset: CGPoint(x: 0, y: 8))
+        UpTopView.ff_AlignInner(type:ff_AlignType.TopLeft, referView:self, size: CGSize(width: UIScreen.mainScreen().bounds.size.width, height: 10),offset: CGPoint(x: 0, y: 0))
         
         iconView.ff_AlignVertical(type:ff_AlignType.BottomLeft, referView: UpTopView, size: CGSize(width: 35, height: 35),offset: CGPoint(x: 8, y: 8))
         nameLable.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: iconView, size: nil, offset: CGPoint(x: 8, y: 0))
@@ -84,7 +84,7 @@ class YFTopView: UIView {
     private lazy var UpTopView :UIView = {
         
         let View = UIView()
-        View.backgroundColor = UIColor.darkGrayColor()
+        View.backgroundColor = UIColor.lightGrayColor()
         
         return View
         }()
