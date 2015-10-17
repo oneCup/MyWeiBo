@@ -23,6 +23,7 @@
 		1C3EE6151BC659960069BF55 /* MyWeiBooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE6141BC659960069BF55 /* MyWeiBooTests.swift */; };
 		1C3EE6201BC659960069BF55 /* MyWeiBooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */; };
 		1C7683F91BD01F21006E6BA2 /* YFForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7683F81BD01F21006E6BA2 /* YFForwardCell.swift */; settings = {ASSET_TAGS = (); }; };
+		1C7683FB1BD16A95006E6BA2 /* YFStatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7683FA1BD16A95006E6BA2 /* YFStatusNormalCell.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA41BCD713C009B99BB /* YFStatues.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA61BCD74D8009B99BB /* YFUser.swift */; settings = {ASSET_TAGS = (); }; };
@@ -77,6 +78,7 @@
 		1C3EE61F1BC659960069BF55 /* MyWeiBooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeiBooUITests.swift; sourceTree = "<group>"; };
 		1C3EE6211BC659960069BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C7683F81BD01F21006E6BA2 /* YFForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFForwardCell.swift; sourceTree = "<group>"; };
+		1C7683FA1BD16A95006E6BA2 /* YFStatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatusNormalCell.swift; sourceTree = "<group>"; };
 		1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		1C9D2AA41BCD713C009B99BB /* YFStatues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatues.swift; sourceTree = "<group>"; };
 		1C9D2AA61BCD74D8009B99BB /* YFUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUser.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				1C9D2AAE1BCDDA2C009B99BB /* YFStateCell.swift */,
 				1C9D2AC11BCEC064009B99BB /* YFPictureView.swift */,
 				1C7683F81BD01F21006E6BA2 /* YFForwardCell.swift */,
+				1C7683FA1BD16A95006E6BA2 /* YFStatusNormalCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */,
 				1C9D2AC21BCEC064009B99BB /* YFPictureView.swift in Sources */,
 				1C9D2ABE1BCEAE5D009B99BB /* UIButton+Extension.swift in Sources */,
+				1C7683FB1BD16A95006E6BA2 /* YFStatusNormalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

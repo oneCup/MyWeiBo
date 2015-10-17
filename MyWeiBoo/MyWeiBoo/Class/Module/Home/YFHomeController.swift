@@ -8,12 +8,14 @@
 
 import UIKit
 
+
 class YFHomeController: YFBaseTableViewController {
     
     var status:[YFStatues]? {
         
         didSet{
             //刷新表格数据
+            
             tableView.reloadData()
         }
         
@@ -27,17 +29,24 @@ class YFHomeController: YFBaseTableViewController {
        
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
         loaddata()
-        tableView.registerClass(YFForwardCell.self, forCellReuseIdentifier: "Cell")
+        
+        tableView.registerClass(YFStatusNormalCell.self, forCellReuseIdentifier:StatuCellIndentifier.NormalCell.rawValue)
+        tableView.registerClass(YFForwardCell.self, forCellReuseIdentifier:StatuCellIndentifier.ForwardCell.rawValue)
+        
 
         // 设置表格的预估行高(方便表格提前计算预估行高，提高性能) - 尽量准确，能够提高性能
         // 能够减少调用行高的次数
 //        tableView.estimatedRowHeight = 300
         tableView.estimatedRowHeight = 200
         // 设置表格自动计算行高
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.rowHeight = UITableViewAutomaticDimension
         // 取消分割线
-//        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-//        loaddata()
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        //判断
+
+        
+
         
     }
     
@@ -72,7 +81,8 @@ class YFHomeController: YFBaseTableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! YFForwardCell
+        let statuse = status![indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(StatuCellIndentifier.cellID(statuse), forIndexPath: indexPath) as! YFStateCell
         
         // 要求必须注册原型cell, storyboard，register Class
         cell.status = status![indexPath.row]
@@ -95,14 +105,14 @@ class YFHomeController: YFBaseTableViewController {
         // 会造成死循环，在不同版本的 Xcode 中 行高的计算次数不一样！尽量要优化！
         // 如果不做处理，会非常消耗性能！
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? YFForwardCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StatuCellIndentifier.cellID(statuse)) as? YFStateCell
+        print(StatuCellIndentifier.cellID(statuse))
         
         //记录并返回行高值
         statuse.rowHeight = cell?.rowHeight(statuse)
-        
         print( "加载行高\(statuse.rowHeight)")
-        
         return statuse.rowHeight!
+        
         
     }
     

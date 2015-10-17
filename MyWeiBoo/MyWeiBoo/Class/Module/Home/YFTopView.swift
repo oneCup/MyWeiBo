@@ -53,11 +53,12 @@ class YFTopView: UIView {
         UpTopView.ff_AlignInner(type:ff_AlignType.TopLeft, referView:self, size: CGSize(width: UIScreen.mainScreen().bounds.size.width, height: 10),offset: CGPoint(x: 0, y: 0))
         
         iconView.ff_AlignVertical(type:ff_AlignType.BottomLeft, referView: UpTopView, size: CGSize(width: 35, height: 35),offset: CGPoint(x: 8, y: 8))
-        nameLable.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: iconView, size: nil, offset: CGPoint(x: 8, y: 0))
+        
         timeLabel.ff_AlignHorizontal(type: ff_AlignType.BottomRight, referView: iconView, size:nil, offset: CGPoint(x: 8, y: 0))
         sourceLabel.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: timeLabel, size: nil, offset: CGPoint(x: 8, y: 0))
         memIconView.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: iconView, size: nil, offset: CGPoint(x: 8, y: 0))
         VipIconView.ff_AlignInner(type: ff_AlignType.BottomRight, referView: iconView, size: nil,offset: CGPoint(x: 8, y: 8))
+        nameLable.ff_AlignHorizontal(type: ff_AlignType.TopRight, referView: memIconView, size: nil, offset: CGPoint(x: 8, y: 0))
     
     }
     
@@ -69,10 +70,10 @@ class YFTopView: UIView {
     private lazy var nameLable: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 14)
     
 ///  3.来源标签
-    private lazy var sourceLabel: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 12)
+    private lazy var sourceLabel: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 10)
     
 ///  4.时间标签
-    private lazy var timeLabel: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 12)
+    private lazy var timeLabel: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 10)
     
 ///  5.会员图标
     private lazy var  memIconView: UIImageView = UIImageView()

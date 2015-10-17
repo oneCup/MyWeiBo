@@ -41,7 +41,7 @@ class YFForwardCell: YFStateCell {
         backButton.ff_AlignVertical(type: ff_AlignType.TopRight, referView: bottomView, size: nil)
     
             //3.3转发微博标签
-        forwardLabel.ff_AlignInner(type: ff_AlignType.TopLeft, referView: backButton, size: nil, offset: CGPoint(x: stateCellMargin, y: stateCellMargin))
+        forwardLabel.ff_AlignInner(type: ff_AlignType.TopLeft, referView: backButton, size: nil, offset: CGPoint(x:0, y: stateCellMargin))
     
             //3.4多图视图
         let cons = pictureView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: forwardLabel, size:CGSize(width: 290, height: 290),offset: CGPoint(x: stateCellMargin, y: stateCellMargin))

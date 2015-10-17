@@ -10,6 +10,20 @@ import UIKit
 
 let stateCellMargin : CGFloat = 8
 
+///  定义一个表示符枚举
+enum StatuCellIndentifier: String {
+    
+    case NormalCell = "NormalCell"
+    case ForwardCell = "ForwardCell"
+    
+    //静态函数
+    static func cellID(status:YFStatues) ->String {
+        
+        return status.retweeted_status == nil ? StatuCellIndentifier.NormalCell.rawValue : StatuCellIndentifier.ForwardCell.rawValue
+    }
+}
+
+
 class YFStateCell: UITableViewCell {
     
     ///  图片宽度约束
@@ -67,12 +81,6 @@ class YFStateCell: UITableViewCell {
         ContentLable.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: TopView, size: nil, offset: CGPoint(x:stateCellMargin , y: stateCellMargin))
             //宽度
         contentView.addConstraint(NSLayoutConstraint(item:ContentLable, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: -2 * stateCellMargin))
-//        //3.多图视图
-//        let cons = pictureView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: ContentLable, size:CGSize(width: 290, height: 290),offset: CGPoint(x: 0, y: stateCellMargin))
-//        //记录约束属性
-//        pictureWidthCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Width)
-//        pictureHeightCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Height)
-//        pictureHeightTopCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Top)
         
         
         //3.底部视图
@@ -100,6 +108,7 @@ class YFStateCell: UITableViewCell {
       func rowHeight(status:YFStatues)-> CGFloat {
         //设置属性
         self.status = status
+        print(status)
         //强制更新布局
         //使用自动布局,不需要修该frame,修改的工作交给自动布局来完成
         layoutIfNeeded()
