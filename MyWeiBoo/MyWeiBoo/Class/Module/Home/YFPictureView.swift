@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 /// 可重用 cell 标示符
 private let statusPictureViewCellID = "statusPictureViewCellID"
@@ -42,9 +43,21 @@ class YFPictureView: UICollectionView{
         }
         
         if count == 1 {
+            let key = status!.PictursURL![0].absoluteString
+            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
+            //判断为空
+            //如果图像不存在的大小
+            var size = CGSize(width: 90, height: 90)
             
-        //TODO:暂时设一个大小
-            let size = CGSize(width: 150, height: 120)
+            if image != nil {
+                size = image.size
+            }
+            //对图像的尺寸进行判断,解决图片的过宽,过窄的情况
+            size.width = size.width < 40 ? 40 : size.width
+            size.width = size.width > UIScreen.mainScreen().bounds.width ? 150 : size.width
+            
+            pictureLayOut.itemSize = size
+            
             return size
         }
         if count == 4 {

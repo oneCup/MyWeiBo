@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class YFStatues: NSObject {
     
@@ -62,13 +63,9 @@ class YFStatues: NSObject {
       class func loadStatus(finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
         
         YFNETWorkTools.sharedTools.loadStatus { (result, error) -> () in
-            
             if(error != nil) {
-            
                 finished(datalist: nil, error: error)
-                
                 return
-            
             }
             
             //判断是否可以获得字典数
@@ -83,17 +80,56 @@ class YFStatues: NSObject {
                 }
                 
                 //转换为字典后,完成回调
+                cachWebImage(list, finished: finished)
                 
                 finished(datalist: list, error: nil)
             }else {
             
                 finished(datalist: nil, error:nil)
-            
-            
             }
             
         }
+    }
+    
+    
+    ///  缓存网络图片,缓存结束后,才刷新图片
+    
+     class func cachWebImage(list:[YFStatues],finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
+    
+        //创建调度组
+        let group = dispatch_group_create()
+        // 缓存图片
+        var dataLength = 0
         
+        //循环遍历数组
+        for status in list {
+        //判断是否有图片
+            guard let urls = status.PictursURL else {
+                continue
+            }
+            
+        //便利urlImage数组
+         
+            for imageurl in urls {
+                //入组
+                dispatch_group_enter(group)
+                SDWebImageManager.sharedManager().downloadImageWithURL(imageurl, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image,_ , _ , _ , _ ) -> Void in
+                    
+                        //将图像转换成二进制数据
+                        let data = UIImagePNGRepresentation(image)!
+                        dataLength += data.length
+                        dispatch_group_leave(group)
+                        })
+                    }
+        }
+        //通知组:监听所有缓存操作
+        dispatch_group_notify(group, dispatch_get_main_queue(), { () -> Void in
+            print("缓存大小\(dataLength)k")
+            //离开组
+        //完成回调
+        finished(datalist: list, error: nil)
+            
+        })
 
     }
     //kvc
