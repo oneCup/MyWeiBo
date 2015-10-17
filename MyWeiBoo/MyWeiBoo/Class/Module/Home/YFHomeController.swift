@@ -25,31 +25,45 @@ class YFHomeController: YFBaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //注册原型cell
+        
        
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
-        loaddata()
+       
+        prepare()
         
+        //测试代码,刷新控件,高度是60
+        refreshControl = UIRefreshControl()
+        print(refreshControl?.bounds.height)
+        
+        //测试添加视图
+        let v = UIView(frame: CGRect(x: 0, y: 0, width:UIScreen.mainScreen().bounds.width, height: 44))
+        refreshControl?.addSubview(v)
+        v.backgroundColor = UIColor.redColor()      
+        //隐藏转轮
+        refreshControl?.tintColor = UIColor.clearColor()
+        //监听方法
+        refreshControl?.addTarget(self, action: "loaddata", forControlEvents: UIControlEvents.ValueChanged)
+       }
+    
+    //准备数据
+    func prepare() {
+    
+//         loaddata()
         tableView.registerClass(YFStatusNormalCell.self, forCellReuseIdentifier:StatuCellIndentifier.NormalCell.rawValue)
         tableView.registerClass(YFForwardCell.self, forCellReuseIdentifier:StatuCellIndentifier.ForwardCell.rawValue)
         
-
+        //注册原型cell
         // 设置表格的预估行高(方便表格提前计算预估行高，提高性能) - 尽量准确，能够提高性能
         // 能够减少调用行高的次数
-//        tableView.estimatedRowHeight = 300
+        //        tableView.estimatedRowHeight = 300
         tableView.estimatedRowHeight = 200
         // 设置表格自动计算行高
-//        tableView.rowHeight = UITableViewAutomaticDimension
+        //        tableView.rowHeight = UITableViewAutomaticDimension
         // 取消分割线
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
-        //判断
-
-        
-
-        
-    }
     
+    }
     func loaddata() {
         
         YFNETWorkTools.sharedTools.loadStatus { (result, error) -> () in
