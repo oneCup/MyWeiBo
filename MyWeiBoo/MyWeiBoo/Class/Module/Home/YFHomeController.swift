@@ -76,8 +76,13 @@ class YFHomeController: YFBaseTableViewController {
                     print(error)
                     return
                 }
-                let count = datalist?.count
+                let count = datalist?.count ?? 0
                 print("刷新到\(count)数据")
+                if since_id > 0 {
+                
+                self!.shownPullDdown(count)
+                    
+                }
                 
                 //判断是否有数据
                 if count == 0 {
@@ -86,14 +91,44 @@ class YFHomeController: YFBaseTableViewController {
                 //下拉刷新,将结果集放在集合的前面
                 if since_id > 0 {
                     self!.status = datalist! + self!.status!
+                    
                 }else if max_id > 0{    //上拉数据
                     self!.status! += datalist!
-                    //复位保证下次可以继续下拉
+                    //复位保证下次可以继续上拉
+                    
                     self!.pullUpRefreshFlag = false
                 }else {
                     self?.status = datalist
                 }
             }
+    }
+    ///  显示上拉刷新提示
+    private func shownPullDdown(count: Int) {
+    
+        //定义标签
+        let h: CGFloat = 44
+        let label = UILabel(frame: CGRectMake(0, -2 * h, UIScreen.mainScreen().bounds.width, h))
+        label.backgroundColor = UIColor.orangeColor()
+        label.text = "刷新了\(count)条数据"
+        // 将 label 添加到界面(view不合适，会一起滚动)
+        // 加载 navBar 上面，不会随着 tableView 一起滚动
+//        view.insertSubview(label, atIndex: 0)
+        navigationController?.navigationBar.insertSubview(label, atIndex: 0)
+        //加载动画
+       UIView.animateWithDuration(1, animations: { () -> Void in
+        
+            //自动翻转动画
+            UIView.setAnimationRepeatAutoreverses(true)
+            //移动label的位置
+            label.frame = CGRectOffset(label.frame, 0, 3 * h)
+        
+        }) { (_) -> Void in
+            
+            //移除动画
+            label.removeFromSuperview()
+        }
+    
+    
     }
     
     override func didReceiveMemoryWarning() {
