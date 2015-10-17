@@ -32,13 +32,13 @@ class YFHomeController: YFBaseTableViewController {
         prepare()
         
         //测试代码,刷新控件,高度是60
-        refreshControl = UIRefreshControl()
+        refreshControl = YFRefreshControl()
         print(refreshControl?.bounds.height)
         
-        //测试添加视图
-        let v = UIView(frame: CGRect(x: 0, y: 0, width:UIScreen.mainScreen().bounds.width, height: 44))
-        refreshControl?.addSubview(v)
-        v.backgroundColor = UIColor.redColor()      
+//        //测试添加视图
+//        let v = UIView(frame: CGRect(x: 0, y: 0, width:UIScreen.mainScreen().bounds.width, height: 44))
+//        refreshControl?.addSubview(v)
+//        v.backgroundColor = UIColor.redColor()      
         //隐藏转轮
         refreshControl?.tintColor = UIColor.clearColor()
         //监听方法
@@ -48,7 +48,7 @@ class YFHomeController: YFBaseTableViewController {
     //准备数据
     func prepare() {
     
-//         loaddata()
+         loaddata()
         tableView.registerClass(YFStatusNormalCell.self, forCellReuseIdentifier:StatuCellIndentifier.NormalCell.rawValue)
         tableView.registerClass(YFForwardCell.self, forCellReuseIdentifier:StatuCellIndentifier.ForwardCell.rawValue)
         
