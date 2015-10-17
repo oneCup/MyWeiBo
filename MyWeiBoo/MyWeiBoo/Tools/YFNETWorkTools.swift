@@ -104,7 +104,7 @@ class YFNETWorkTools: AFHTTPSessionManager {
         }
         if max_id > 0 {
         
-            params["max_id"] = max_id
+            params["max_id"] = max_id - 1 
 
         }
         

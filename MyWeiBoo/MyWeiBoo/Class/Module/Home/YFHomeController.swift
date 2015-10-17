@@ -52,6 +52,8 @@ class YFHomeController: YFBaseTableViewController {
         
     
     }
+    ///  定义一个上拉刷新的标记
+    private var pullUpRefreshFlag = false
     func loaddata() {
         
         //开启刷新动画,但并不会加载数据
@@ -59,9 +61,14 @@ class YFHomeController: YFBaseTableViewController {
         
         //刷新数据,获取每一条数据的id
         //第一次执行词方法方法的时候,status为空,sinc_id = o加载最新的20条数据
-        let since_id = status?.first?.id ?? 0
-    
-        let max_id = 0
+        var since_id = status?.first?.id ?? 0
+        var max_id = 0
+        //判断是否是上拉数据
+        if pullUpRefreshFlag {
+            since_id = 0
+            //做下拉刷新
+            max_id = status?.last?.id ?? 0
+        }
     
             YFStatues.loadStatus(since_id,max_id: max_id){[weak self] (datalist, error) -> () in
                 self!.refreshControl?.endRefreshing()
@@ -74,12 +81,15 @@ class YFHomeController: YFBaseTableViewController {
                 
                 //判断是否有数据
                 if count == 0 {
-                
                     return
                 }
                 //下拉刷新,将结果集放在集合的前面
                 if since_id > 0 {
                     self!.status = datalist! + self!.status!
+                }else if max_id > 0{    //上拉数据
+                    self!.status! += datalist!
+                    //复位保证下次可以继续下拉
+                    self!.pullUpRefreshFlag = false
                 }else {
                     self?.status = datalist
                 }
@@ -99,12 +109,18 @@ class YFHomeController: YFBaseTableViewController {
         return status?.count ?? 0
     }
 
-    
+    //每次要显示cell的时候,会调用此方法,根据数据源方法
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let statuse = status![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(StatuCellIndentifier.cellID(statuse), forIndexPath: indexPath) as! YFStateCell
         
+        //判断indexpath.row是否是最后一行,如果是则进行上拉数据
+        if indexPath.row == status!.count - 1 {
+            pullUpRefreshFlag = true
+            //开始上拉数据
+            loaddata()
+        }
         // 要求必须注册原型cell, storyboard，register Class
         cell.status = status![indexPath.row]
         return cell

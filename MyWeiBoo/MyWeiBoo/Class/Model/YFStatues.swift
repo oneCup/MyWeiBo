@@ -81,8 +81,8 @@ class YFStatues: NSObject {
                 
                 //转换为字典后,完成回调
                 cachWebImage(list, finished: finished)
-                
-                finished(datalist: list, error: nil)
+                //TODO:侧是以下代码打开后是否会报错
+//                finished(datalist: list, error: nil)
             }else {
             
                 finished(datalist: nil, error:nil)
