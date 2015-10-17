@@ -88,13 +88,26 @@ class YFNETWorkTools: AFHTTPSessionManager {
     
     
     //MARK:加载微博数据
-    func loadStatus(finished:YFNetFinishedBack) {
+    ///  since_id    则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
+    ///  max_id      则返回ID`小于或等于max_id`的微博，默认为0
+    
+    func loadStatus(since_id:Int,max_id:Int,finished:YFNetFinishedBack) {
         
         //判断Token是否为空
-        guard let params = tokenDict(finished) else {
+        guard var params = tokenDict(finished) else {
             return
         
         }
+        if since_id > 0 {
+            
+            params["since_id"] = since_id
+        }
+        if max_id > 0 {
+        
+            params["max_id"] = max_id
+
+        }
+        
         let urlString = "2/statuses/home_timeline.json"
         
         //发送网络请求

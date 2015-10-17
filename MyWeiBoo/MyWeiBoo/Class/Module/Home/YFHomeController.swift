@@ -15,34 +15,16 @@ class YFHomeController: YFBaseTableViewController {
         
         didSet{
             //刷新表格数据
-            
             tableView.reloadData()
         }
-        
     }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-       
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
-       
         prepare()
         
-        //测试代码,刷新控件,高度是60
-        refreshControl = YFRefreshControl()
-        print(refreshControl?.bounds.height)
         
-//        //测试添加视图
-//        let v = UIView(frame: CGRect(x: 0, y: 0, width:UIScreen.mainScreen().bounds.width, height: 44))
-//        refreshControl?.addSubview(v)
-//        v.backgroundColor = UIColor.redColor()      
-        //隐藏转轮
-        refreshControl?.tintColor = UIColor.clearColor()
-        //监听方法
-        refreshControl?.addTarget(self, action: "loaddata", forControlEvents: UIControlEvents.ValueChanged)
+       
        }
     
     //准备数据
@@ -61,22 +43,47 @@ class YFHomeController: YFBaseTableViewController {
         //        tableView.rowHeight = UITableViewAutomaticDimension
         // 取消分割线
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        //测试代码,刷新控件,高度是60
+        refreshControl = YFRefreshControl()
+        //隐藏转轮
+        refreshControl?.tintColor = UIColor.clearColor()
+        //监听方法
+        refreshControl?.addTarget(self, action: "loaddata", forControlEvents: UIControlEvents.ValueChanged)
         
     
     }
     func loaddata() {
         
-        YFNETWorkTools.sharedTools.loadStatus { (result, error) -> () in
-            
-            YFStatues.loadStatus({[weak self] (datalist, error) -> () in
-                
+        //开启刷新动画,但并不会加载数据
+        refreshControl?.beginRefreshing()
+        
+        //刷新数据,获取每一条数据的id
+        //第一次执行词方法方法的时候,status为空,sinc_id = o加载最新的20条数据
+        let since_id = status?.first?.id ?? 0
+    
+        let max_id = 0
+    
+            YFStatues.loadStatus(since_id,max_id: max_id){[weak self] (datalist, error) -> () in
+                self!.refreshControl?.endRefreshing()
                 if error != nil {
                     print(error)
                     return
                 }
-                self?.status = datalist
-            })
-        }
+                let count = datalist?.count
+                print("刷新到\(count)数据")
+                
+                //判断是否有数据
+                if count == 0 {
+                
+                    return
+                }
+                //下拉刷新,将结果集放在集合的前面
+                if since_id > 0 {
+                    self!.status = datalist! + self!.status!
+                }else {
+                    self?.status = datalist
+                }
+            }
     }
     
     override func didReceiveMemoryWarning() {
