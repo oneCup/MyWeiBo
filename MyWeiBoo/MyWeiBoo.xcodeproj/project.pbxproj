@@ -27,6 +27,7 @@
 		1C7683FD1BD2373B006E6BA2 /* YFRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7683FC1BD2373B006E6BA2 /* YFRefreshControl.swift */; settings = {ASSET_TAGS = (); }; };
 		1C7684011BD237FF006E6BA2 /* YFrefresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7684001BD237FF006E6BA2 /* YFrefresh.xib */; settings = {ASSET_TAGS = (); }; };
 		1C7684031BD2AC45006E6BA2 /* YFComposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7684021BD2AC45006E6BA2 /* YFComposedViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		1C76840A1BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7684091BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA41BCD713C009B99BB /* YFStatues.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA61BCD74D8009B99BB /* YFUser.swift */; settings = {ASSET_TAGS = (); }; };
@@ -85,6 +86,7 @@
 		1C7683FC1BD2373B006E6BA2 /* YFRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFRefreshControl.swift; sourceTree = "<group>"; };
 		1C7684001BD237FF006E6BA2 /* YFrefresh.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YFrefresh.xib; sourceTree = "<group>"; };
 		1C7684021BD2AC45006E6BA2 /* YFComposedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YFComposedViewController.swift; path = Module/Home/YFComposedViewController.swift; sourceTree = "<group>"; };
+		1C7684091BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		1C9D2AA41BCD713C009B99BB /* YFStatues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatues.swift; sourceTree = "<group>"; };
 		1C9D2AA61BCD74D8009B99BB /* YFUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUser.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */,
 				1C9D2AB61BCE2D57009B99BB /* UILabel+Extension.swift */,
 				1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */,
+				1C7684091BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				1C237C431BC8235800A63965 /* YFProfileController.swift in Sources */,
 				1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */,
 				1C237C401BC8235800A63965 /* YFMainController.swift in Sources */,
+				1C76840A1BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift in Sources */,
 				1C9D2AAB1BCDD9BD009B99BB /* YFTopView.swift in Sources */,
 				1C7683F91BD01F21006E6BA2 /* YFForwardCell.swift in Sources */,
 				1C9D2AAD1BCDD9D1009B99BB /* YFButtomview.swift in Sources */,

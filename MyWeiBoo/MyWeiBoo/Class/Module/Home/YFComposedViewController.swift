@@ -23,6 +23,13 @@ class YFComposedViewController: UIViewController {
     
     
     }
+    func inputEmoticon() {
+    
+    
+        print("选择表情")
+    
+    
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +44,30 @@ class YFComposedViewController: UIViewController {
         print("a\(view)")
         prepareNav()
         prepareToolbar()
+        prepareText()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("b\(view)")
+        
+    }
+    
+    func prepareText() {
+    
+        //1.加载
+        view.addSubview(textview)
+        //2.设置布局
+        textview.backgroundColor = UIColor.whiteColor()
+        textview.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
+        textview.ff_AlignInner(type: ff_AlignType.TopLeft, referView: view, size: nil)
+        textview.ff_AlignVertical(type: ff_AlignType.TopRight, referView: toolbar, size: nil)
+        
+        textview.addSubview(placeholderLabel)
+        
+        placeholderLabel.ff_AlignInner(type: ff_AlignType.TopLeft, referView: textview, size: nil, offset: CGPointMake(6, 8))
+
+        
         
     }
     
@@ -80,14 +106,11 @@ class YFComposedViewController: UIViewController {
     
     func prepareToolbar() {
         
-        //1.创建toolBar
-        let toolBar = UIToolbar()
+         view.addSubview(toolbar)
         //2.设置颜色
-        toolBar.backgroundColor = UIColor.redColor()
+        toolbar.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
         //3.设置布局
-        view.addSubview(toolBar)
-        
-        toolBar.ff_AlignInner(type: ff_AlignType.BottomLeft, referView: view, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: 44))
+        toolbar.ff_AlignInner(type: ff_AlignType.BottomLeft, referView: view, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: 44))
         // 定义一个数组
         let itemSettings = [["imageName": "compose_toolbar_picture"],
             ["imageName": "compose_mentionbutton_background"],
@@ -105,24 +128,44 @@ class YFComposedViewController: UIViewController {
             button.setImage(UIImage(named: dict["imageName"]!), forState: UIControlState.Normal)
             button.setImage(UIImage(named: dict["imageName"]! + "_highlighted"), forState: UIControlState.Highlighted)
             button.sizeToFit()
+            items.append(UIBarButtonItem(imageName: dict["imageName"]!, target: self, action: dict["action"]))
             
-            //设置监听方法 判断actionKey是否存在
-            
-            if let actionName = dict["action"] {
-            
-                button.addTarget(self, action: Selector(actionName), forControlEvents: UIControlEvents.TouchUpInside)
-            }
-            
-            let item = UIBarButtonItem(customView: button)
-
-            items.append(item)
             //追加弹簧
             items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil))
         }
        
-        toolBar.items = items
+       toolbar.items = items
     }
     
-
+    //MARK:懒加载
+    //文本视图
+    private lazy var textview: UITextView = {
     
-}
+        let textvie = UITextView()
+//        textvie.text = "分享新鲜事"
+        textvie.backgroundColor = UIColor.lightGrayColor()
+        textvie.font = UIFont.systemFontOfSize(18)
+        //设置可拖动
+        textvie.alwaysBounceVertical = true
+        //拖拽关闭键盘
+        textvie.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+        return  textvie
+        
+    }()
+    
+    //工具栏
+    private lazy var toolbar: UIToolbar = UIToolbar()
+///  设置占位标签
+    
+    private  lazy var placeholderLabel : UILabel = {
+    
+        let label =  UILabel(color: UIColor.lightGrayColor(), fontSize: 18)
+        label.text = "分享新鲜事"
+        
+        label.sizeToFit()
+        
+        return label
+        
+        
+    }()
+ }
