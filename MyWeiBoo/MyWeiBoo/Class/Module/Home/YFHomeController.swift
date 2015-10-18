@@ -60,6 +60,9 @@ class YFHomeController: YFBaseTableViewController {
         
         //开启刷新动画,但并不会加载数据
         refreshControl?.beginRefreshing()
+        //复位保证下次可以继续上拉
+        
+        self.pullUpRefreshFlag = false
         
         //刷新数据,获取每一条数据的id
         //第一次执行词方法方法的时候,status为空,sinc_id = o加载最新的20条数据
@@ -96,9 +99,7 @@ class YFHomeController: YFBaseTableViewController {
                     
                 }else if max_id > 0{    //上拉数据
                     self!.status! += datalist!
-                    //复位保证下次可以继续上拉
-                    
-                    self!.pullUpRefreshFlag = false
+                   
                 }else {
                     self?.status = datalist
                 }

@@ -10,12 +10,7 @@ import UIKit
 
 class YFComposedViewController: UIViewController {
     
-    //监听方法
-    func close() {
     
-        dismissViewControllerAnimated(true, completion: nil)
-    
-    }
     
     func sendStatus() {
         
@@ -30,14 +25,73 @@ class YFComposedViewController: UIViewController {
     
     
     }
+    //Mark键盘监听
+    //定义一个底部约束
+    private var ToolboardBottomCons: NSLayoutConstraint?
+    
+    ///  添加键盘通知
+    private func addkeyboardserver() {
+        //注册通知keyboardChanged
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardChanged:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        
+    }
+    
+    ///  删除键盘通知
+    private func removekeyboard() {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+    }
+    
+    //监听方法
+    func keyboardChanged(n:NSNotification){
+        
+        print(n)
+        //获取目标frame
+        let rect = n.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue
+        //设置frame变化的动画时长
+        let duration = n.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
+        //设置约束
+        ToolboardBottomCons?.constant = -(UIScreen.mainScreen().bounds.height - rect.origin.y)
+    
+        //执行动画
+        
+        UIView.animateWithDuration(duration) { () -> Void in
+            
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        
+        //设置文本框中键盘为第一响应者
+        
+        textview.becomeFirstResponder()
+    }
+    func close() {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        textview.resignFirstResponder()
+        
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
          print("c\(view)")
         view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        addkeyboardserver()
+        //设置键盘为第一响应者
+        
+        
+     
 
         
     }
+    
     
     override func loadView() {
         view = UIView()
@@ -110,7 +164,8 @@ class YFComposedViewController: UIViewController {
         //2.设置颜色
         toolbar.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
         //3.设置布局
-        toolbar.ff_AlignInner(type: ff_AlignType.BottomLeft, referView: view, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: 44))
+       let cons = toolbar.ff_AlignInner(type: ff_AlignType.BottomLeft, referView: view, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: 44))
+        ToolboardBottomCons = toolbar.ff_Constraint(cons, attribute:NSLayoutAttribute.Bottom)
         // 定义一个数组
         let itemSettings = [["imageName": "compose_toolbar_picture"],
             ["imageName": "compose_mentionbutton_background"],
