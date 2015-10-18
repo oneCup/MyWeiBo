@@ -116,8 +116,8 @@ class YFStatues: NSObject {
                 SDWebImageManager.sharedManager().downloadImageWithURL(imageurl, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image,_ , _ , _ , _ ) -> Void in
                     
                         //将图像转换成二进制数据
-                        let data = UIImagePNGRepresentation(image)!
-                        dataLength += data.length
+                        let data = UIImagePNGRepresentation(image)
+                        dataLength += data!.length
                         dispatch_group_leave(group)
                         })
                     }

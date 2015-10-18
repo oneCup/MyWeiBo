@@ -20,17 +20,19 @@ class YFHomeController: YFBaseTableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !YFUserAcount.userLogin {
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
+            return
+        }
         prepare()
+        loaddata()
         
-        
-       
+ 
        }
     
     //准备数据
     func prepare() {
     
-         loaddata()
         tableView.registerClass(YFStatusNormalCell.self, forCellReuseIdentifier:StatuCellIndentifier.NormalCell.rawValue)
         tableView.registerClass(YFForwardCell.self, forCellReuseIdentifier:StatuCellIndentifier.ForwardCell.rawValue)
         
@@ -110,6 +112,7 @@ class YFHomeController: YFBaseTableViewController {
         let label = UILabel(frame: CGRectMake(0, -2 * h, UIScreen.mainScreen().bounds.width, h))
         label.backgroundColor = UIColor.orangeColor()
         label.text = "刷新了\(count)条数据"
+        label.textAlignment = NSTextAlignment.Center
         // 将 label 添加到界面(view不合适，会一起滚动)
         // 加载 navBar 上面，不会随着 tableView 一起滚动
 //        view.insertSubview(label, atIndex: 0)

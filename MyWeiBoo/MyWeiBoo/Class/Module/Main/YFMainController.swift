@@ -91,7 +91,13 @@ class YFMainController: UITabBarController {
    
     func clickComposeButton() {
     
-        print(__FUNCTION__)
+       // 1.创建一个撰写视图控制器
+        let vc = YFUserAcount.userLogin ? YFComposedViewController() : YFYFoAuthViewController()
+        let nav = UINavigationController(rootViewController: vc)
+       
+        
+        //弹出
+        presentViewController(nav, animated: true, completion: nil)
     
     }
     //创建button的frame
