@@ -7,12 +7,9 @@
 //
 
 import UIKit
-
-
 class YFHomeController: YFBaseTableViewController {
     
     var status:[YFStatues]? {
-        
         didSet{
             //刷新表格数据
             tableView.reloadData()
@@ -24,11 +21,39 @@ class YFHomeController: YFBaseTableViewController {
         VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
             return
         }
+        ///MARK:  注册一个通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "selectPicture:", name: YFstateCellDidSelectNotification, object: nil)
         prepare()
         loaddata()
         
- 
        }
+    
+    deinit {
+        //注册通知
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    //MARK:选择照片
+   @objc private  func selectPicture(n:NSNotification) {
+        
+        //通知监听成功
+    guard let url = n.userInfo![YFstateCellDidSelectLargePicURLkey] as? [NSURL] else {
+        print("图像数组不存在")
+    
+        return
+        }
+    guard let indexpath = n.userInfo![YFstateCellDidSelectIndexkey] as? NSIndexPath else {
+    
+        print("索引不存在")
+        return
+    }
+        //1.创建图片浏览控制器
+        let picVC = YFPotoBrowserController(url:url, selectedIndex: indexpath.item)
+    
+        presentViewController(picVC, animated: true, completion: nil)
+    
+        
+    }
     
     //准备数据
     func prepare() {
@@ -131,16 +156,9 @@ class YFHomeController: YFBaseTableViewController {
             //移除动画
             label.removeFromSuperview()
         }
-    
-    
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+       // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         print(status?.count)

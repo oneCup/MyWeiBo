@@ -9,6 +9,10 @@
 import UIKit
 import SDWebImage
 
+let YFstateCellDidSelectNotification = "YFstateCellDidSelectNotification"
+let YFstateCellDidSelectLargePicURLkey = "YFstateCellDidSelectLargePicURLkey"
+let YFstateCellDidSelectIndexkey = "YFstateCellDidSelectIndexkey"
+
 /// 可重用 cell 标示符
 private let statusPictureViewCellID = "statusPictureViewCellID"
 
@@ -80,18 +84,25 @@ class YFPictureView: UICollectionView{
         // 注册可重用 cell
         registerClass(YFPictureViewCell.self, forCellWithReuseIdentifier: statusPictureViewCellID)
         self.dataSource = self
+        self.delegate = self
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-}
+ }
 
 //在 swift 中，协议同样可以通过 extension 遵守协议并实现方法来写，可以将一组协议方法，放置在一起，便于代码维护和阅读！
-extension YFPictureView: UICollectionViewDataSource {
-
+extension YFPictureView: UICollectionViewDataSource,UICollectionViewDelegate {
+    
+    /// 选中某一行的代理通知(当选中某一行时)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        print(indexPath)
+        //获取大图url
+        //选中cell的行后,发送通知
+        NSNotificationCenter.defaultCenter().postNotificationName(YFstateCellDidSelectNotification, object: nil, userInfo: [YFstateCellDidSelectLargePicURLkey:status!.LargePicURL!,YFstateCellDidSelectIndexkey:indexPath])
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return status?.PictursURL?.count ?? 0

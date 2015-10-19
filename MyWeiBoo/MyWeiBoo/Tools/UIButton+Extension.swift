@@ -23,7 +23,21 @@ extension UIButton{
         
         
     }
+    
+   
 
+    convenience init(title: String, backColor: UIColor, fontsize: CGFloat,textColor: UIColor = UIColor.whiteColor()) {
+        
+        self.init()
+        
+        setTitle(title, forState: UIControlState.Normal)
+        
+        setTitleColor(textColor, forState: UIControlState.Normal)
+        titleLabel?.font = UIFont.systemFontOfSize(fontsize)
+        backgroundColor = backColor
+        
+    }
+    
 
 
 }

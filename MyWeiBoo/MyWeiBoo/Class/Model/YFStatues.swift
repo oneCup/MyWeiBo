@@ -32,14 +32,17 @@ class YFStatues: NSObject {
             }
             //遍历生成字典
             stortedPictureURL = [NSURL]()
+            storedLargeURL = [NSURL]()
             
             for dict in pic_urls! {
             
                 if let url = dict["thumbnail_pic"] as? String {
-                    
+                    //生成缩略图的url
                     stortedPictureURL?.append(NSURL(string: url)!)
+                    //生成大图的url
+                    let largurlString = url.stringByReplacingOccurrencesOfString("thumbnail_pic", withString: "large")
+                    storedLargeURL?.append(NSURL(string: largurlString)!)
                 }
-
             }
         }
     
@@ -48,8 +51,10 @@ class YFStatues: NSObject {
     var retweeted_status:YFStatues?
     //设置一个保存配图的URL数组
     var stortedPictureURL: [NSURL]?
+    //保存配图大图的URL数组
+    var storedLargeURL: [NSURL]?
 
-    ///  配图的
+    /// 配图的计算型数组
     var PictursURL: [NSURL]? {
         
     retweeted_status == nil ? stortedPictureURL : retweeted_status?.stortedPictureURL
@@ -57,7 +62,11 @@ class YFStatues: NSObject {
         return stortedPictureURL
     
     }
-    /// 用户
+    /// 返回大图的URL数组
+    var LargePicURL: [NSURL]? {
+    
+        return retweeted_status == nil ? stortedPictureURL : retweeted_status?.storedLargeURL
+    }
     var user: YFUser?
      //MARK:字典转模型
       class func loadStatus(since_id:Int,max_id:Int,finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
@@ -114,6 +123,12 @@ class YFStatues: NSObject {
                 //入组
                 dispatch_group_enter(group)
                 SDWebImageManager.sharedManager().downloadImageWithURL(imageurl, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image,_ , _ , _ , _ ) -> Void in
+                        //判断,如果网络不给力,没有数据,直接返回
+                    print("image------>\(image)")
+                    if image == nil {
+                        return
+                        
+                    }
                     
                         //将图像转换成二进制数据
                         let data = UIImagePNGRepresentation(image)

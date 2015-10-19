@@ -21,8 +21,6 @@ class YFStatusNormalCell: YFStateCell {
         pictureHeightTopCons = pictureView.ff_Constraint(cons, attribute: NSLayoutAttribute.Top)
 
     }
-   
-    
-    
+  
     
 }

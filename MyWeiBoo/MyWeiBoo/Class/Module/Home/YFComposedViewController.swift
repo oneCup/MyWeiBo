@@ -85,11 +85,6 @@ class YFComposedViewController: UIViewController {
         view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         addkeyboardserver()
         //设置键盘为第一响应者
-        
-        
-     
-
-        
     }
     
     

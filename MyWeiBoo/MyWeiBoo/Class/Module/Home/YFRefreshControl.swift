@@ -68,8 +68,8 @@ class YFRefreshControl: UIRefreshControl {
         refreshView.ff_AlignInner(type: ff_AlignType.CenterCenter, referView: self, size: refreshView.bounds.size)
         }
     
-    //懒加载控件
-    private lazy var refreshView : YFRereshView  = YFRereshView.LoadrefreshView()
+        //懒加载控件
+        private lazy var refreshView : YFRereshView  = YFRereshView.LoadrefreshView()
 }
 
 /// 下拉刷新视图 - 负责显示动画
@@ -107,8 +107,6 @@ class YFRereshView: UIView {
         
         }
     }
-    
-    
     ///  开始动画加载
     private func startLoading() {
     
@@ -120,6 +118,7 @@ class YFRereshView: UIView {
         
         //1.隐藏提示框
         TipView.hidden = true
+        
         //2.定义动画(旋转动画)
         let animi = CABasicAnimation(keyPath: "transform.rotation")
         animi.toValue = 2 * M_PI

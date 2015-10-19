@@ -28,6 +28,7 @@
 		1C7684011BD237FF006E6BA2 /* YFrefresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7684001BD237FF006E6BA2 /* YFrefresh.xib */; settings = {ASSET_TAGS = (); }; };
 		1C7684031BD2AC45006E6BA2 /* YFComposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7684021BD2AC45006E6BA2 /* YFComposedViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C76840A1BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7684091BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		1C76844A1BD4B285006E6BA2 /* YFPotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7684491BD4B285006E6BA2 /* YFPotoBrowserController.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA41BCD713C009B99BB /* YFStatues.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AA61BCD74D8009B99BB /* YFUser.swift */; settings = {ASSET_TAGS = (); }; };
@@ -87,6 +88,7 @@
 		1C7684001BD237FF006E6BA2 /* YFrefresh.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YFrefresh.xib; sourceTree = "<group>"; };
 		1C7684021BD2AC45006E6BA2 /* YFComposedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YFComposedViewController.swift; path = Module/Home/YFComposedViewController.swift; sourceTree = "<group>"; };
 		1C7684091BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		1C7684491BD4B285006E6BA2 /* YFPotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFPotoBrowserController.swift; sourceTree = "<group>"; };
 		1C9D2AA21BCD5E86009B99BB /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		1C9D2AA41BCD713C009B99BB /* YFStatues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatues.swift; sourceTree = "<group>"; };
 		1C9D2AA61BCD74D8009B99BB /* YFUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUser.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		1C237C311BC8235800A63965 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1C7684481BD4B230006E6BA2 /* PhotoBrowser */,
 				1C237C321BC8235800A63965 /* YFHomeController.swift */,
 				1C9D2AAA1BCDD9BD009B99BB /* YFTopView.swift */,
 				1C9D2AAC1BCDD9D1009B99BB /* YFButtomview.swift */,
@@ -293,6 +296,14 @@
 			);
 			name = Composed;
 			path = Module/Composed;
+			sourceTree = "<group>";
+		};
+		1C7684481BD4B230006E6BA2 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1C7684491BD4B285006E6BA2 /* YFPotoBrowserController.swift */,
+			);
+			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		1CC3EFB71BCA617D00314A01 /* NewFuture */ = {
@@ -544,6 +555,7 @@
 				1C3EE6001BC659960069BF55 /* AppDelegate.swift in Sources */,
 				1C9D2AC21BCEC064009B99BB /* YFPictureView.swift in Sources */,
 				1C9D2ABE1BCEAE5D009B99BB /* UIButton+Extension.swift in Sources */,
+				1C76844A1BD4B285006E6BA2 /* YFPotoBrowserController.swift in Sources */,
 				1C7683FB1BD16A95006E6BA2 /* YFStatusNormalCell.swift in Sources */,
 				1C7684031BD2AC45006E6BA2 /* YFComposedViewController.swift in Sources */,
 			);
