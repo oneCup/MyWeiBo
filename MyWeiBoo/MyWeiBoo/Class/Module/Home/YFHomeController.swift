@@ -33,8 +33,11 @@ class YFHomeController: YFBaseTableViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    
     //MARK:选择照片
    @objc private  func selectPicture(n:NSNotification) {
+    
+        print(n)
         
         //通知监听成功
     guard let url = n.userInfo![YFstateCellDidSelectLargePicURLkey] as? [NSURL] else {
@@ -86,9 +89,7 @@ class YFHomeController: YFBaseTableViewController {
         //开启刷新动画,但并不会加载数据
         refreshControl?.beginRefreshing()
         //复位保证下次可以继续上拉
-        
-        self.pullUpRefreshFlag = false
-        
+      
         //刷新数据,获取每一条数据的id
         //第一次执行词方法方法的时候,status为空,sinc_id = o加载最新的20条数据
         var since_id = status?.first?.id ?? 0
@@ -102,6 +103,7 @@ class YFHomeController: YFBaseTableViewController {
     
             YFStatues.loadStatus(since_id,max_id: max_id){[weak self] (datalist, error) -> () in
                 self!.refreshControl?.endRefreshing()
+                self!.pullUpRefreshFlag = false
                 if error != nil {
                     print(error)
                     return
@@ -110,7 +112,7 @@ class YFHomeController: YFBaseTableViewController {
                 print("刷新到\(count)数据")
                 if since_id > 0 {
                 
-                self!.shownPullDdown(count)
+                    self!.shownPullDdown(count)
                     
                 }
                 

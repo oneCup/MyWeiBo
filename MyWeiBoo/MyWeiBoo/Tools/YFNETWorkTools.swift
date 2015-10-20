@@ -104,6 +104,7 @@ class YFNETWorkTools: AFHTTPSessionManager {
         }
         if max_id > 0 {
         
+            //保证当max_id = 0下拉刷新时,有两条一样的数据
             params["max_id"] = max_id - 1 
 
         }

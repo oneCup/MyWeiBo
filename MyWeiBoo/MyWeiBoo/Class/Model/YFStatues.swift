@@ -40,7 +40,7 @@ class YFStatues: NSObject {
                     //生成缩略图的url
                     stortedPictureURL?.append(NSURL(string: url)!)
                     //生成大图的url
-                    let largurlString = url.stringByReplacingOccurrencesOfString("thumbnail_pic", withString: "large")
+                    let largurlString = url.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
                     storedLargeURL?.append(NSURL(string: largurlString)!)
                 }
             }
@@ -65,7 +65,7 @@ class YFStatues: NSObject {
     /// 返回大图的URL数组
     var LargePicURL: [NSURL]? {
     
-        return retweeted_status == nil ? stortedPictureURL : retweeted_status?.storedLargeURL
+        return retweeted_status == nil ? storedLargeURL : retweeted_status?.storedLargeURL
     }
     var user: YFUser?
      //MARK:字典转模型
@@ -124,7 +124,6 @@ class YFStatues: NSObject {
                 dispatch_group_enter(group)
                 SDWebImageManager.sharedManager().downloadImageWithURL(imageurl, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image,_ , _ , _ , _ ) -> Void in
                         //判断,如果网络不给力,没有数据,直接返回
-                    print("image------>\(image)")
                     if image == nil {
                         return
                         

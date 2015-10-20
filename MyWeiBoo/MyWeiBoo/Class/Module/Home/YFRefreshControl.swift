@@ -100,7 +100,7 @@ class YFRereshView: UIView {
     private func rotateTip() {
     
         let angle = Refreshflag ? CGFloat(M_PI - 0.01) : CGFloat(M_PI + 0.01)
-        UIView.animateWithDuration(0.5) { () -> Void in
+        UIView.animateWithDuration(0.25) { () -> Void in
             
             //判断旋转标记
             self.TipIcon.transform = CGAffineTransformRotate(self.TipIcon.transform, angle)
