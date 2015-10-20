@@ -115,6 +115,7 @@ extension YFPictureView: UICollectionViewDataSource,UICollectionViewDelegate {
         
         cell.imageURL = status!.PictursURL![indexPath.item]
         
+        
         return cell
     }
 }
@@ -125,6 +126,7 @@ class YFPictureViewCell: UICollectionViewCell {
     var imageURL:NSURL? {
     
         didSet{
+        gifImageView.hidden = ((imageURL!.absoluteString as NSString).pathExtension.lowercaseString != "gif")
         
         iconView.sd_setImageWithURL(imageURL)
 
@@ -147,6 +149,9 @@ class YFPictureViewCell: UICollectionViewCell {
     
         contentView.addSubview(iconView)
         iconView.ff_Fill(contentView)
+        iconView.addSubview(gifImageView)
+        //设置布局
+        gifImageView.ff_AlignInner(type: ff_AlignType.BottomRight, referView: iconView, size: nil)
     
     }
     
@@ -162,5 +167,7 @@ class YFPictureViewCell: UICollectionViewCell {
         return iconView
     
     }()
+///  懒加载gif图片
+    private lazy var gifImageView: UIImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
     
 }
