@@ -28,8 +28,6 @@ class YFPhotoCollectionViewCell: UICollectionViewCell {
             }
             self.setImagePosition()
             self.indicator.stopAnimating()
-                
-
             
             }
             
@@ -59,13 +57,14 @@ class YFPhotoCollectionViewCell: UICollectionViewCell {
             //垂直居中
             let  y = (scroolView.bounds.height - size.height) * 0.5
         
-            ImageView.frame = CGRect(origin: CGPoint(x: 0, y: y), size: size)
+            ImageView.frame = CGRect(origin:CGPointZero, size: size)
+            
+            //设置一个内间距,保证图片在正中间缩放
+            scroolView.contentInset = UIEdgeInsets(top: y, left: 0, bottom: y, right: 0)
         }
-        
-        
+ 
     }
 
-    
     //MARK:设置图片的尺寸:以scorllView宽度为基准
     private func setDiaplaySize(image:UIImage)->CGSize {
     
@@ -84,28 +83,81 @@ class YFPhotoCollectionViewCell: UICollectionViewCell {
         //加载控件
         contentView.addSubview(scroolView)
         scroolView.addSubview(ImageView)
-        ImageView.frame = CGRectMake(0, 0, 90, 90)
+//        ImageView.frame = CGRectMake(0, 0, 90, 90)
         contentView.addSubview(indicator)
 
-        scroolView.backgroundColor = UIColor.blackColor()
         print(scroolView.subviews)
         
         //布局
         scroolView.translatesAutoresizingMaskIntoConstraints = false
         indicator.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[sv]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["sv":scroolView]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[sv]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["sv":scroolView]))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[sv]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["sv":scroolView]))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[sv]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["sv":scroolView]))
             addConstraint(NSLayoutConstraint(item: indicator, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0))
             addConstraint(NSLayoutConstraint(item: indicator, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0))
+        
+            prepareScrollView()
     
     }
+    
+    /// 准备 ScrollView
+    private func prepareScrollView() {
+        
+        scroolView.delegate = self
+        
+        // 最大/小缩放比例
+        scroolView.minimumZoomScale = 0.5
+        scroolView.maximumZoomScale = 2.0
+    }
+
+    
     //MARK:懒加载
     /// SCROLL
-    private lazy var scroolView = UIScrollView()
+    lazy var scroolView = UIScrollView()
     ///  图像url
-    private lazy var ImageView = UIImageView()
+    lazy var ImageView = UIImageView()
     ///  网络加载动画
     private lazy var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
     
     
     }
+
+///  设置照片的缩放
+//MARK:cell的代理方法
+
+extension YFPhotoCollectionViewCell:UIScrollViewDelegate {
+    
+    /// 告诉 scrollView 要缩放的控件
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        
+        return ImageView
+    }
+    ///  当缩放结束后,scroolView.contentInset的变化
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        
+        var offsetX = (scroolView.bounds.width - view!.frame.width) * 0.5
+        offsetX = offsetX < 0 ? 0 : offsetX
+        
+        var offsetY = (scroolView.bounds.height - view!.frame.height)
+        * 0.5
+        offsetY = offsetY < 0 ? 0 :  offsetY
+        
+        scroolView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
+        
+        
+        
+    }
+    
+    ///  监听frame的变化
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        
+        print(ImageView.transform)
+        print(ImageView.bounds)
+    }
+    
+    
+    
+}
+
+
+
