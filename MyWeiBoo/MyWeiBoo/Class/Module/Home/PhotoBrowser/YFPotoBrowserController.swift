@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SVProgressHUD
+
 private let YFPhontoCollectionViewCell = "YFPhontoCollectionViewCell"
 
 class YFPotoBrowserController: UIViewController {
@@ -48,7 +50,24 @@ class YFPotoBrowserController: UIViewController {
     func ClickSaveButton() {
     
         print("保存图片")
+        //1.获取照片,collectionview.indexPathsForVisibleItems().last:获取界面上所能显示的row
+        let indexpath = collectionview.indexPathsForVisibleItems().last!
+        let cell = collectionview.cellForItemAtIndexPath(indexpath) as! YFPhotoCollectionViewCell
+        //判断图像是否存在
+        guard let image = cell.ImageView.image else {
+            return
+        }
+        
+        //保存,需要一个完成回调的方法
+        UIImageWriteToSavedPhotosAlbum(image, self, "image:didFinishSavingWithError:contextInfo:", nil)
+      }
     
+    func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject?){
+        
+            print(error)
+            print(image)
+            let msg = (error == nil) ? "保存成功" : "保存失败"
+            SVProgressHUD.showInfoWithStatus(msg)
     }
     
     //MARK:关闭
