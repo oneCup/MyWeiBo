@@ -37,21 +37,28 @@ class YFHomeController: YFBaseTableViewController {
     //MARK:选择照片
    @objc private  func selectPicture(n:NSNotification) {
     
-        print(n)
-        
+//        print(n)
+    
         //通知监听成功
-    guard let url = n.userInfo![YFstateCellDidSelectLargePicURLkey] as? [NSURL] else {
-        print("图像数组不存在")
-    
-        return
+        guard let url = n.userInfo![YFstateCellDidSelectLargePicURLkey] as? [NSURL] else {
+            print("图像数组不存在")
+        
+            return
+            }
+        guard let indexpath = n.userInfo![YFstateCellDidSelectIndexkey] as? NSIndexPath else {
+        
+            print("索引不存在")
+            return
         }
-    guard let indexpath = n.userInfo![YFstateCellDidSelectIndexkey] as? NSIndexPath else {
-    
-        print("索引不存在")
-        return
-    }
         //1.创建图片浏览控制器
         let picVC = YFPotoBrowserController(url:url, selectedIndex: indexpath.item)
+        //自定义专场动画
+        //默认的转场完成之后,之前的view会被移除屏幕
+        //1.指定代理
+        picVC.transitioningDelegate = self
+        //2.指定Moda专场模式-自定义
+        picVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+    
     
         presentViewController(picVC, animated: true, completion: nil)
     
@@ -211,5 +218,91 @@ class YFHomeController: YFBaseTableViewController {
         
         
     }
+// MARK: - 是否Modal展现的标记
+    private var isPresensented = false
     
+}
+
+/// 自定义转场的协议
+extension YFHomeController: UIViewControllerTransitioningDelegate {
+    
+    /// 返回提供转场动画的遵守 `UIViewControllerAnimatedTransitioning` 协议的对象
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        isPresensented = true
+        
+        return self
+    }
+    
+    /// 返回提供解除转场的对象
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        isPresensented = false
+        
+        return self
+    }
+}
+
+
+
+// MARK: - 自定义专场动画
+extension YFHomeController: UIViewControllerAnimatedTransitioning {
+    
+    // 转场动画时长
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+        return 2.0
+    }
+    
+    // 自定义转场动画 － 只要实现了此方法，就需要自己来动画代码
+    /**
+    transitionContext 提供了转场动画需要的元素
+    
+    completeTransition(true) 动画结束后必须调用的
+    containerView() 容器视图
+    
+    viewForKey      获取到转场的视图
+    */
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        
+        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        
+        print(fromVC)
+        print(toVC)
+        
+        // Modal
+        if isPresensented{
+            // 展现动画
+            let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+            
+            // 将目标视图，添加到容器视图中
+            transitionContext.containerView()?.addSubview(toView)
+            toView.alpha = 0
+            
+            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+                
+                toView.alpha = 1.0
+                
+                }) { (_) -> Void in
+                    
+                    // 动画结束之后，一定要执行，如果不执行，系统会一直等待，无法进行后续的交互！
+                    transitionContext.completeTransition(true)
+            }
+        } else {
+            
+            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
+            
+            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+                
+                fromView.alpha = 0.0
+                
+                }, completion: { (_) -> Void in
+                    
+                    fromView.removeFromSuperview()
+                    
+                    // 解除转场时，会把 容器视图以及内部的内容一起销毁
+                    transitionContext.completeTransition(true)
+            })
+        }
+    }
 }

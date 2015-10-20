@@ -15,11 +15,13 @@ class YFPhotoCollectionViewCell: UICollectionViewCell {
     
         didSet{
             
+            
+            
             indicator.startAnimating()
             
-            ///  加载数据之前清除缓存
+            // 加载数据之前清除缓存
             ImageView.image = nil
-            
+            resetScrollView()
             ImageView.sd_setImageWithURL(imageURL) { (image, _ , _ , _) -> Void in
             
             if self.imageURL == nil {
@@ -34,6 +36,13 @@ class YFPhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    /// 重设 ScrollView 的偏移属性
+    private func resetScrollView() {
+        scroolView.contentInset = UIEdgeInsetsZero
+        scroolView.contentOffset = CGPointZero
+        scroolView.contentSize = CGSizeZero
+    }
+
     //MARK:重写创建cell的方法
     override init(frame: CGRect) {
         super.init(frame: frame)

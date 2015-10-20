@@ -26,7 +26,7 @@ class YFPotoBrowserController: UIViewController {
         //设置自己的属性值
         self.url = url
         self.selectedIndex = selectedIndex
-        
+      print(self.url)
         //调用父类的构造函数
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,6 +46,18 @@ class YFPotoBrowserController: UIViewController {
         view = UIView(frame: screenbounds)
         setUpUI()
     }
+    //TODO:存片滚动有问题
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+        //跳转用户到指定的照片
+        
+        let indextpath = NSIndexPath(forItem: selectedIndex!, inSection: 0)
+        collectionview.scrollToItemAtIndexPath(indextpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+    }
+    
+    
     //MARK:保存图片事件
     func ClickSaveButton() {
     
@@ -73,8 +85,7 @@ class YFPotoBrowserController: UIViewController {
     //MARK:关闭
     func ClickCloseButton() {
     
-    
-        dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
     
     }
     
@@ -162,8 +173,4 @@ extension YFPotoBrowserController: UICollectionViewDataSource {
         print(url)
         return cell
     }
-
-
-
-
 }
