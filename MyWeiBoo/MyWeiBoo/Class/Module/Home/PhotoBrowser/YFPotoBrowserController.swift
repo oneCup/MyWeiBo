@@ -16,6 +16,8 @@ class YFPotoBrowserController: UIViewController {
     //设置大图URL数组
     var url: [NSURL]?
     
+    var isOnce:Bool = true
+    
     //设置选中状态的索引值
     var selectedIndex:Int?
     
@@ -38,6 +40,7 @@ class YFPotoBrowserController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.redColor()
+        
 //        setUpUI()
       }
     override func loadView() {
@@ -46,15 +49,26 @@ class YFPotoBrowserController: UIViewController {
         view = UIView(frame: screenbounds)
         setUpUI()
     }
-    //TODO:存片滚动有问题
+    
+    static var token:dispatch_once_t = 0
+    
     override func viewDidLayoutSubviews() {
         
         super.viewDidLayoutSubviews()
+        //解决方法1
+        dispatch_once(&YFPotoBrowserController.token) { () -> Void in
+            let indextpath = NSIndexPath(forItem: self.selectedIndex!, inSection: 0)
+            self.collectionview.scrollToItemAtIndexPath(indextpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+            print("我来了")
+        }
         
-        //跳转用户到指定的照片
+//        //2.跳转用户到指定的照片,指定一个标记符,当第一次进来之后
+//        if isOnce {
+//            let indextpath = NSIndexPath(forItem: selectedIndex!, inSection: 0)
+//            collectionview.scrollToItemAtIndexPath(indextpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+//            isOnce = false
+//        }
         
-        let indextpath = NSIndexPath(forItem: selectedIndex!, inSection: 0)
-        collectionview.scrollToItemAtIndexPath(indextpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
     }
     
     
@@ -100,20 +114,22 @@ class YFPotoBrowserController: UIViewController {
         collectionview.frame = view.bounds
         
         //设置约束
-        collectionview.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        closeBotton.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[saveButton(32)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dict))
-
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[closeBotton(32)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dict))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[saveButton(100)]-(>=0)-[closeBotton(100)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dict))
+    let rect = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - 40, width: 100, height: 32)
+        closeBotton.frame = CGRectOffset(rect, 8, 0)
+        saveButton.frame = CGRectOffset(rect,UIScreen.mainScreen().bounds.width - rect.width - 8, 0)
+        
+//                view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[saveButton(32)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dict))
+//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[closeBotton(32)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dict))
+//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[saveButton(100)]-(>=0)-[closeBotton(100)]-28-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dict))
         
         //单独准备collectionView视图
-        preparCollevc()
+      
         //注册监听通知
         saveButton.addTarget(self, action: "ClickSaveButton", forControlEvents: UIControlEvents.TouchUpInside)
         closeBotton.addTarget(self, action: "ClickCloseButton", forControlEvents: UIControlEvents.TouchUpInside)
+          preparCollevc()
+        
+        
     }
     
     //MARK:准备UICollecttionView

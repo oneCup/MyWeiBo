@@ -50,20 +50,19 @@ class YFHomeController: YFBaseTableViewController {
             print("索引不存在")
             return
         }
+    
         //1.创建图片浏览控制器
         let picVC = YFPotoBrowserController(url:url, selectedIndex: indexpath.item)
+    
         //自定义专场动画
         //默认的转场完成之后,之前的view会被移除屏幕
         //1.指定代理
         picVC.transitioningDelegate = self
         //2.指定Moda专场模式-自定义
         picVC.modalPresentationStyle = UIModalPresentationStyle.Custom
-    
-    
         presentViewController(picVC, animated: true, completion: nil)
     
-        
-    }
+     }
     
     //准备数据
     func prepare() {
