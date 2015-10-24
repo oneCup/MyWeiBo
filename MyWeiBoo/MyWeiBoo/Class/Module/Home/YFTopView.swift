@@ -18,7 +18,8 @@ class YFTopView: UIView {
             iconView.sd_setImageWithURL(url)
             }
             nameLable.text = status?.user?.name
-            timeLabel.text = " 刚刚"
+
+            timeLabel.text = NSDate.sinaDate(status?.created_at ?? "")?.dateDescription
             sourceLabel.text = " 来自微博"
             memIconView.image = status?.user?.memberImage
         }
@@ -49,6 +50,7 @@ class YFTopView: UIView {
         addSubview(timeLabel)
         addSubview(memIconView)
         addSubview(VipIconView)
+
     //布局控件
         UpTopView.ff_AlignInner(type:ff_AlignType.TopLeft, referView:self, size: CGSize(width: UIScreen.mainScreen().bounds.size.width, height: 10),offset: CGPoint(x: 0, y: 0))
         
@@ -67,7 +69,7 @@ class YFTopView: UIView {
     private lazy var iconView: UIImageView = UIImageView()
     
 ///  2.姓名
-    private lazy var nameLable: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 14)
+    private lazy var nameLable: UILabel = UILabel(color: UIColor.orangeColor(), fontSize: 14)
     
 ///  3.来源标签
     private lazy var sourceLabel: UILabel = UILabel(color: UIColor.darkGrayColor(), fontSize: 10)

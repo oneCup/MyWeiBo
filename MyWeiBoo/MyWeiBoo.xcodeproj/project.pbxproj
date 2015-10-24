@@ -40,6 +40,7 @@
 		1C9D2ABE1BCEAE5D009B99BB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		1C9D2AC21BCEC064009B99BB /* YFPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D2AC11BCEC064009B99BB /* YFPictureView.swift */; settings = {ASSET_TAGS = (); }; };
 		1CA081381BC9746B00F7BACD /* YFUserAcount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA081371BC9746B00F7BACD /* YFUserAcount.swift */; settings = {ASSET_TAGS = (); }; };
+		1CA5EEFC1BDBD7D200E95ECF /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA5EEFB1BDBD7D200E95ECF /* NSDateExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		FB4EB9CBC62A893C65CAC19C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD087CB8C368301DDD53C684 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		1C9D2AC11BCEC064009B99BB /* YFPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFPictureView.swift; sourceTree = "<group>"; };
 		1CA081371BC9746B00F7BACD /* YFUserAcount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFUserAcount.swift; sourceTree = "<group>"; };
+		1CA5EEFB1BDBD7D200E95ECF /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFWelcomViewController.swift; sourceTree = "<group>"; };
 		792EDDD86B16134439FEB5BC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BD087CB8C368301DDD53C684 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +290,7 @@
 				1C9D2AB61BCE2D57009B99BB /* UILabel+Extension.swift */,
 				1C9D2ABD1BCEAE5D009B99BB /* UIButton+Extension.swift */,
 				1C7684091BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift */,
+				1CA5EEFB1BDBD7D200E95ECF /* NSDateExtension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */,
 				1C237C431BC8235800A63965 /* YFProfileController.swift in Sources */,
 				1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */,
+				1CA5EEFC1BDBD7D200E95ECF /* NSDateExtension.swift in Sources */,
 				1C237C401BC8235800A63965 /* YFMainController.swift in Sources */,
 				1C76840A1BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift in Sources */,
 				1C9D2AAB1BCDD9BD009B99BB /* YFTopView.swift in Sources */,
