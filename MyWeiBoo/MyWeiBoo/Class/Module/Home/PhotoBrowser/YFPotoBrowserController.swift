@@ -12,7 +12,7 @@ import SVProgressHUD
 private let YFPhontoCollectionViewCell = "YFPhontoCollectionViewCell"
 
 class YFPotoBrowserController: UIViewController {
-    
+    var token:dispatch_once_t = 0
     //设置大图URL数组
     var url: [NSURL]?
     
@@ -39,7 +39,7 @@ class YFPotoBrowserController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.redColor()
+//        view.backgroundColor = UIColor.redColor()
         
 //        setUpUI()
       }
@@ -50,13 +50,16 @@ class YFPotoBrowserController: UIViewController {
         setUpUI()
     }
     
-    static var token:dispatch_once_t = 0
+    
     
     override func viewDidLayoutSubviews() {
         
         super.viewDidLayoutSubviews()
+        print(self.selectedIndex!)
+        print("haha")
         //解决方法1
-        dispatch_once(&YFPotoBrowserController.token) { () -> Void in
+        print(token)
+        dispatch_once(&token) { () -> Void in
             let indextpath = NSIndexPath(forItem: self.selectedIndex!, inSection: 0)
             self.collectionview.scrollToItemAtIndexPath(indextpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
             print("我来了")
@@ -84,8 +87,9 @@ class YFPotoBrowserController: UIViewController {
             return
         }
         
-        //保存,需要一个完成回调的方法
+       //TODO:ERROR是怎么传的
         UIImageWriteToSavedPhotosAlbum(image, self, "image:didFinishSavingWithError:contextInfo:", nil)
+        
       }
     
     func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject?){
@@ -168,13 +172,16 @@ class YFPotoBrowserController: UIViewController {
         return btn;
     }()
     
+/// 记录缩放的比例,默认比例为1
+        private var photoScale:CGFloat = 1
+    
    }
 
 
 
 //MARK:collectionView的数据源方法
 
-extension YFPotoBrowserController: UICollectionViewDataSource {
+extension YFPotoBrowserController: UICollectionViewDataSource,photoBrowserCellDelegete {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -187,6 +194,137 @@ extension YFPotoBrowserController: UICollectionViewDataSource {
 //        cell.backgroundColor = UIColor.randomColor()
         cell.imageURL = url![indexPath.row]
         print(url)
+        //设置缩放时代理方法
+        cell.photodelegete = self
         return cell
     }
+    
+    func photoBrowserCellZoom(Scale: CGFloat) {
+        
+        print(Scale)
+        photoScale = Scale
+        //设置控件的隐藏
+        HiddenContrl(Scale < 1)
+        //开始交互转场
+        if Scale < 1.0 {
+            //<#T##transitionContext: UIViewControllerContextTransitioning##UIViewControllerContextTransitioning#>实现协议的对象
+            startInteractiveTransition(self)
+        }else {
+        
+            view.transform = CGAffineTransformIdentity
+            view.alpha = 1.0
+            
+        
+        }
+        
+    }
+    //结束缩放
+    func photoBrowaerEndCellZoomScale(Scale: CGFloat) {
+        
+        //判断缩放比例
+        
+        if photoScale < 0.8 {
+        
+        //  结束转场
+            completeTransition(true)
+        }else {
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                
+                self.view.transform = CGAffineTransformIdentity
+                self.view.alpha = 1
+                
+                }, completion: { (_ ) -> Void in
+                    
+                self.photoScale = 1
+                self.HiddenContrl(false)
+            })
+        
+            
+        }
+    }
+    
+    //MARK:当前显示的图像视图
+    func currentImageViewCell() ->UIImageView {
+    
+        let cell = collectionview.cellForItemAtIndexPath(currentImageIndex()) as! YFPhotoCollectionViewCell
+        
+        return cell.ImageView
+    
+    
+    }
+    
+    //MARK:显示当前的照片索引
+    func currentImageIndex() ->NSIndexPath {
+    
+        return collectionview.indexPathsForVisibleItems().last!
+    }
+    
+    
+    //MARK:隐藏控件
+    func HiddenContrl(hidden: Bool) {
+    
+        saveButton.hidden = hidden
+        closeBotton.hidden = hidden
+        //设置collectionview的背景颜色
+        collectionview.backgroundColor = hidden ? UIColor.clearColor() : UIColor.blackColor()
+        
+        
+    
+    }
+}
+
+extension YFPotoBrowserController:UIViewControllerInteractiveTransitioning {
+
+
+    func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
+        
+        view.transform = CGAffineTransformMakeScale(photoScale, photoScale)
+        
+        //设置透明度
+        view.alpha = photoScale
+    }
+}
+
+//提供转场所需要的细节
+
+extension YFPotoBrowserController:UIViewControllerContextTransitioning {
+    
+    func completeTransition(didComplete: Bool) {
+    
+        //关闭当前的控制器{必须实现}
+        dismissViewControllerAnimated(true, completion: nil)
+    
+    
+    }
+
+
+    func containerView() -> UIView? {return view.superview}
+    
+  
+    func isAnimated() -> Bool {return true}
+    
+    func isInteractive() -> Bool {return true}
+    
+    func transitionWasCancelled() -> Bool {return false}
+    
+    func presentationStyle() -> UIModalPresentationStyle {return UIModalPresentationStyle.Custom}
+    
+    func updateInteractiveTransition(percentComplete: CGFloat) {}
+    
+    func finishInteractiveTransition(){}
+    
+    func cancelInteractiveTransition(){}
+    
+    func viewControllerForKey(key: String) -> UIViewController? {return self}
+  
+    func viewForKey(key: String) -> UIView? {return view}
+    
+    func targetTransform() -> CGAffineTransform {return CGAffineTransformIdentity}
+    
+    func initialFrameForViewController(vc: UIViewController) -> CGRect {return CGRectZero}
+
+    func finalFrameForViewController(vc: UIViewController) -> CGRect {return CGRectZero}
+
+
+
 }

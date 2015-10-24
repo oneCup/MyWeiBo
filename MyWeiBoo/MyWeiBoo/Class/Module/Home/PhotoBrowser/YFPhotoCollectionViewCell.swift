@@ -8,8 +8,19 @@
 
 import UIKit
 
+protocol photoBrowserCellDelegete: NSObjectProtocol {
+
+    /// cell缩放比例
+    func photoBrowserCellZoom(Scale: CGFloat)
+    /// 结束缩放比例
+    func photoBrowaerEndCellZoomScale(Scale: CGFloat)
+}
+
+
+
 class YFPhotoCollectionViewCell: UICollectionViewCell {
     
+    weak var photodelegete: photoBrowserCellDelegete?
     //设置属性
     var imageURL: NSURL? {
     
@@ -171,7 +182,7 @@ extension YFPhotoCollectionViewCell:UIScrollViewDelegate {
         
         scroolView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
         
-        
+
         
     }
     
@@ -180,6 +191,12 @@ extension YFPhotoCollectionViewCell:UIScrollViewDelegate {
         
         print(ImageView.transform)
         print(ImageView.bounds)
+        //代理调用方法
+        photodelegete?.photoBrowserCellZoom(ImageView.transform.a)
+        
+        photodelegete?.photoBrowaerEndCellZoomScale(ImageView.transform.a)
+     
+        
     }
     
     

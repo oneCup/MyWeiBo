@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class YFHomeController: YFBaseTableViewController {
     
     var status:[YFStatues]? {
@@ -18,7 +19,7 @@ class YFHomeController: YFBaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if !YFUserAcount.userLogin {
-        VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
+            VisitorView?.setUpViewInfo(true, imageNamed: "visitordiscover_feed_image_smallicon", messageText: "关注一些人，回这里看看有什么惊喜")
             return
         }
         ///MARK:  注册一个通知
@@ -50,6 +51,15 @@ class YFHomeController: YFBaseTableViewController {
             print("索引不存在")
             return
         }
+        guard let pic = n.object as? YFPictureView else {
+        
+            print("图像不存在")
+            return
+        }
+    
+        pictureView = pic
+        prensentIconVew.sd_setImageWithURL(url[indexpath.item])
+        presentindexpath = indexpath
     
         //1.创建图片浏览控制器
         let picVC = YFPotoBrowserController(url:url, selectedIndex: indexpath.item)
@@ -219,7 +229,16 @@ class YFHomeController: YFBaseTableViewController {
     }
 // MARK: - 是否Modal展现的标记
     private var isPresensented = false
+    private lazy var prensentIconVew: UIImageView = {
     
+    let iv = UIImageView()
+        iv.contentMode = UIViewContentMode.ScaleAspectFill
+        iv.clipsToBounds = true
+        return iv
+    }()
+    //转场选中的图片collectionview,可以计算起始位置的目标位置
+    private var pictureView :YFPictureView?
+    private var presentindexpath: NSIndexPath?
 }
 
 /// 自定义转场的协议
@@ -246,7 +265,7 @@ extension YFHomeController: UIViewControllerTransitioningDelegate {
 
 // MARK: - 自定义专场动画
 extension YFHomeController: UIViewControllerAnimatedTransitioning {
-    
+
     // 转场动画时长
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 2.0
@@ -263,45 +282,79 @@ extension YFHomeController: UIViewControllerAnimatedTransitioning {
     */
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        let fromVC = prensentIconVew
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         
-        print(fromVC)
-        print(toVC)
+        print("fromVC----->\(fromVC)")
+        print("toVC----->\(toVC)")
         
         // Modal
         if isPresensented{
-            // 展现动画
+            // 展现动画,最终展现的位置
             let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+            print(toView)
             
             // 将目标视图，添加到容器视图中
-            transitionContext.containerView()?.addSubview(toView)
-            toView.alpha = 0
+            transitionContext.containerView()?.addSubview(prensentIconVew)
+//            toView.alpha = 0
+            //指定图像的起始位置
+            let fromrect = pictureView!.cellScreenFrame(presentindexpath!)
+            //指定图像的目标位置
+            let toRect = self.pictureView!.cellfullScreenFrame(presentindexpath!)
+            prensentIconVew.frame = fromrect
             
             UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
                 
-                toView.alpha = 1.0
+                self.prensentIconVew.frame = toRect
                 
                 }) { (_) -> Void in
                     
+                    self.prensentIconVew.removeFromSuperview()
+                    
                     // 动画结束之后，一定要执行，如果不执行，系统会一直等待，无法进行后续的交互！
+                    transitionContext.containerView()?.addSubview(toView)
                     transitionContext.completeTransition(true)
             }
-        } else {
             
-            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
-            
-            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+            return
+        }
+            //解除照片转场动画
+                let fromVCL = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! YFPotoBrowserController
+        
+            //从控制器中获取当前的显示的照片索引
+                let indexpath = fromVCL.currentImageIndex()
+            //cell对应的位置
+        
+                let rect = pictureView!.cellScreenFrame(indexpath)
+            //照片视图
+            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
+            //设置当为视图的位置
+                let IV = fromVCL.currentImageViewCell()
+            //设置图像视图的位置
+                IV.center = fromView!.center
+            //累加父视图的形变
+                let scale = fromView!.transform.a
+                IV.transform = CGAffineTransformMakeScale(scale, scale)
+            // 将当前图像视图，添加到容器视图
+                transitionContext.containerView()?.addSubview(IV)
+        
+            // 将 fromView 从容器视图中移出
+                fromView!.removeFromSuperview()
+            //执行动画
+        
+                UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+                    
+                    //修改动画
+                    IV.frame = rect
                 
-                fromView.alpha = 0.0
+                    fromView!.alpha = 0.0
                 
                 }, completion: { (_) -> Void in
                     
-                    fromView.removeFromSuperview()
+                    IV.removeFromSuperview()
                     
                     // 解除转场时，会把 容器视图以及内部的内容一起销毁
                     transitionContext.completeTransition(true)
             })
-        }
     }
 }

@@ -96,11 +96,51 @@ extension YFPictureView: UICollectionViewDataSource,UICollectionViewDelegate {
     
     /// 选中某一行的代理通知(当选中某一行时)
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        print(indexPath)
+        //测试转场动画的技巧
+//        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+//        let rect = convertRect(cell!.frame, toCoordinateSpace: UIApplication.sharedApplication().keyWindow!)
+//        print(rect)
+//        
+//        let v = UIView()
+//        v.frame = self.cellfullScreenFrame(indexPath)
+//        UIApplication.sharedApplication().keyWindow?.addSubview(v)
+//        v.backgroundColor = UIColor.redColor()
+//        
+//        print(indexPath)
         //获取大图url
         //选中cell的行后,发送通知
-        NSNotificationCenter.defaultCenter().postNotificationName(YFstateCellDidSelectNotification, object: nil, userInfo: [YFstateCellDidSelectLargePicURLkey:status!.LargePicURL!,YFstateCellDidSelectIndexkey:indexPath])
+        NSNotificationCenter.defaultCenter().postNotificationName(YFstateCellDidSelectNotification, object: self, userInfo: [YFstateCellDidSelectLargePicURLkey:status!.LargePicURL!,YFstateCellDidSelectIndexkey:indexPath])
+    }
+    
+    //MARK:返回cell的缩略图在屏幕上的位置
+    
+    func cellScreenFrame(Indexpath: NSIndexPath) ->CGRect {
+    
+        //获取选中cell
+        let cell = self.cellForItemAtIndexPath(Indexpath)
+        
+        return convertRect((cell?.frame)!, toCoordinateSpace: UIApplication.sharedApplication().keyWindow!)
+    
+    }
+    //MARK:返回cell放大后在屏幕上的位置
+    func cellfullScreenFrame(Indexpath: NSIndexPath) ->CGRect {
+    
+        //获取缩略图
+        let key = status!.PictursURL![Indexpath.item].absoluteString
+        //从缓存中获取到图片
+        
+        let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
+        //计算缩放比例
+        let scale = image.size.height / image.size.width
+        let height = UIScreen.mainScreen().bounds.width * scale
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        //考虑长短图进行缩放比例
+        var y : CGFloat = 0
+        if height < UIScreen.mainScreen().bounds.height {//短图,垂直居中i
+            y = (UIScreen.mainScreen().bounds.height - height) * 0.5
+        }
+        return CGRect(x: 0, y: y, width: screenWidth, height: height)
+    
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,7 +151,7 @@ extension YFPictureView: UICollectionViewDataSource,UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(statusPictureViewCellID, forIndexPath: indexPath) as!YFPictureViewCell
-//        cell.backgroundColor = UIColor.redColor()
+
         
         cell.imageURL = status!.PictursURL![indexPath.item]
         

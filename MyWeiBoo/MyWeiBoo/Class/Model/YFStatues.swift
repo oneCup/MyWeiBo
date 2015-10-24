@@ -57,11 +57,9 @@ class YFStatues: NSObject {
     /// 配图的计算型数组
     var PictursURL: [NSURL]? {
         
-    retweeted_status == nil ? stortedPictureURL : retweeted_status?.stortedPictureURL
+        return  retweeted_status == nil ? stortedPictureURL : retweeted_status?.stortedPictureURL
         
-        return stortedPictureURL
-    
-    }
+        }
     /// 返回大图的URL数组
     var LargePicURL: [NSURL]? {
     
