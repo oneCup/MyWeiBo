@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YFHomeController: YFBaseTableViewController {
+class YFHomeController: YFBaseTableViewController,stateCellDidSelectedLinkDelegate {
     
     var status:[YFStatues]? {
         didSet{
@@ -198,7 +198,24 @@ class YFHomeController: YFBaseTableViewController {
         }
         // 要求必须注册原型cell, storyboard，register Class
         cell.status = status![indexPath.row]
+        cell.delegate = self
         return cell
+    }
+    //MARK:超文本代理方法的实现
+    func stateCellDidSelectedLink(text: String) {
+        
+        print(text)
+        guard let url = NSURL(string: text) else {
+        
+            print("url错误")
+            return
+        }
+        //切换控制器
+        let vc = YFWebController()
+        vc.url = NSURL(string: text)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -224,8 +241,6 @@ class YFHomeController: YFBaseTableViewController {
         statuse.rowHeight = cell?.rowHeight(statuse)
         print( "加载行高\(statuse.rowHeight)")
         return statuse.rowHeight!
-        
-        
     }
 // MARK: - 是否Modal展现的标记
     private var isPresensented = false

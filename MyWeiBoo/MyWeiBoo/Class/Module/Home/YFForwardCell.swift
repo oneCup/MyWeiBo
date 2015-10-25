@@ -54,11 +54,12 @@ class YFForwardCell: YFStateCell {
     }
    
     //MARK:懒加载文字
-    private lazy var forwardLabel: UILabel = {
+    private lazy var forwardLabel: FFLabel = {
     
-        let label = UILabel(color: UIColor.darkGrayColor(), fontSize: 14)
+        let label = FFLabel(color: UIColor.darkGrayColor(), fontSize: 14)
         label.numberOfLines = 0
         label.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width
+        label.labelDelegate = self
         return label
 
     }()

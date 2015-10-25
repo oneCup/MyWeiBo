@@ -18,7 +18,15 @@ class YFStatues: NSObject {
     /// 微博信息内容
     var text: String?
     /// 微博来源
-    var source: String?
+    var source: String? {
+    
+        didSet{
+            print(source)
+           source = source?.hrefLink().text
+            print(source)
+        }
+    
+    }
     /// 显示微博所需的行高
     var rowHeight: CGFloat?
     /// 配图数组(字典类型)

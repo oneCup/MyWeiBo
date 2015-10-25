@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol stateCellDidSelectedLinkDelegate: NSObjectProtocol {
+
+    func stateCellDidSelectedLink(text:String)
+}
+
+
 let stateCellMargin : CGFloat = 8
 
 ///  定义一个表示符枚举
@@ -25,6 +31,9 @@ enum StatuCellIndentifier: String {
 
 
 class YFStateCell: UITableViewCell {
+    
+    /// 超文本连接代理
+    weak var delegate: stateCellDidSelectedLinkDelegate?
     
     ///  图片宽度约束
     var pictureWidthCons :NSLayoutConstraint?
@@ -48,7 +57,7 @@ class YFStateCell: UITableViewCell {
             pictureHeightCons?.constant = pictureView.bounds.size.height
             pictureHeightTopCons?.constant == 0 ? 0 :stateCellMargin
             
-                  }
+            }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -91,17 +100,23 @@ class YFStateCell: UITableViewCell {
     
     //Mark:懒加载控件视图
    //顶部视图
-     var TopView: YFTopView = YFTopView()
+     lazy var TopView: YFTopView = YFTopView()
     //设置文本视图
-     var ContentLable: UILabel = {
-    //设置内容标签
-     let lable = UILabel(color: UIColor.darkGrayColor(), fontSize: 12)
-        lable.numberOfLines = 0
-//        lable.sizeToFit()
-        //TODO:为什么要使用这句话
-        lable.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 2 * 8
+    lazy var ContentLable: FFLabel = {
+        //设置内容标签
+        let label = FFLabel(color: UIColor.darkGrayColor(), fontSize: 12)
         
-        return lable
+        label.labelDelegate = self
+        
+        label.numberOfLines = 0
+        
+        // lable.sizeToFit()
+        //TODO:为什么要使用这句话
+        
+        label.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 2 * 8
+        
+        
+        return label
     }()
 
 /// 图片行高
@@ -124,3 +139,19 @@ class YFStateCell: UITableViewCell {
     lazy var pictureView:YFPictureView = YFPictureView()
     
    }
+
+
+//MARK:labelDelegate 超文本代理
+extension YFStateCell: FFLabelDelegate {
+
+    func labelDidSelectedLinkText(label: FFLabel, text: String) {
+        
+        print(text)
+        
+        //判断是否是http协议
+        if text.hasPrefix("http://"){
+        
+        self.delegate?.stateCellDidSelectedLink(text)
+        }
+    }
+}

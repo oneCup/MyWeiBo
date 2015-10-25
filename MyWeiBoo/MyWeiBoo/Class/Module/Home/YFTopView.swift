@@ -20,7 +20,7 @@ class YFTopView: UIView {
             nameLable.text = status?.user?.name
 
             timeLabel.text = NSDate.sinaDate(status?.created_at ?? "")?.dateDescription
-            sourceLabel.text = " 来自微博"
+            sourceLabel.text = status?.source
             memIconView.image = status?.user?.memberImage
         }
     }
