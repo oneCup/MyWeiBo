@@ -45,6 +45,17 @@
 		1CA5EEFC1BDBD7D200E95ECF /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA5EEFB1BDBD7D200E95ECF /* NSDateExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		1CA5EF3C1BDBEE6500E95ECF /* String + Rex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA5EF3B1BDBEE6500E95ECF /* String + Rex.swift */; settings = {ASSET_TAGS = (); }; };
 		1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BB61BDE81360028B348 /* tables.sql in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE3BB51BDE81360028B348 /* tables.sql */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BBA1BDE81FD0028B348 /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BB91BDE81FD0028B348 /* SQLiteManager.swift */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BC71BDE82230028B348 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BBD1BDE82230028B348 /* FMDatabase.m */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BC81BDE82230028B348 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BBF1BDE82230028B348 /* FMDatabaseAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BC91BDE82230028B348 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BC11BDE82230028B348 /* FMDatabasePool.m */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BCA1BDE82230028B348 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BC31BDE82230028B348 /* FMDatabaseQueue.m */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BCB1BDE82230028B348 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BC61BDE82230028B348 /* FMResultSet.m */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BCF1BDE831A0028B348 /* FMDatabaseAdditionsVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BCD1BDE831A0028B348 /* FMDatabaseAdditionsVariadic.swift */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BD01BDE831A0028B348 /* FMDatabaseVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BCE1BDE831A0028B348 /* FMDatabaseVariadic.swift */; settings = {ASSET_TAGS = (); }; };
+		1CEE3BD41BDE83A70028B348 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE3BD31BDE83A70028B348 /* libsqlite3.tbd */; };
+		1CEE3BD71BDE84D60028B348 /* YFStatusDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE3BD61BDE84D60028B348 /* YFStatusDAL.swift */; settings = {ASSET_TAGS = (); }; };
 		FB4EB9CBC62A893C65CAC19C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD087CB8C368301DDD53C684 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -110,6 +121,24 @@
 		1CA5EEFB1BDBD7D200E95ECF /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		1CA5EF3B1BDBEE6500E95ECF /* String + Rex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Rex.swift"; sourceTree = "<group>"; };
 		1CC3EFB81BCA61FB00314A01 /* YFWelcomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFWelcomViewController.swift; sourceTree = "<group>"; };
+		1CEE3BB51BDE81360028B348 /* tables.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tables.sql; sourceTree = "<group>"; };
+		1CEE3BB91BDE81FD0028B348 /* SQLiteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
+		1CEE3BBC1BDE82230028B348 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		1CEE3BBD1BDE82230028B348 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		1CEE3BBE1BDE82230028B348 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		1CEE3BBF1BDE82230028B348 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		1CEE3BC01BDE82230028B348 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		1CEE3BC11BDE82230028B348 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		1CEE3BC21BDE82230028B348 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		1CEE3BC31BDE82230028B348 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		1CEE3BC41BDE82230028B348 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		1CEE3BC51BDE82230028B348 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		1CEE3BC61BDE82230028B348 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		1CEE3BCD1BDE831A0028B348 /* FMDatabaseAdditionsVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseAdditionsVariadic.swift; sourceTree = "<group>"; };
+		1CEE3BCE1BDE831A0028B348 /* FMDatabaseVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseVariadic.swift; sourceTree = "<group>"; };
+		1CEE3BD21BDE834E0028B348 /* Header-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Header-Bridge.h"; sourceTree = "<group>"; };
+		1CEE3BD31BDE83A70028B348 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1CEE3BD61BDE84D60028B348 /* YFStatusDAL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFStatusDAL.swift; sourceTree = "<group>"; };
 		792EDDD86B16134439FEB5BC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BD087CB8C368301DDD53C684 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFDA0804FC60B32880B0D3D3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CEE3BD41BDE83A70028B348 /* libsqlite3.tbd in Frameworks */,
 				FB4EB9CBC62A893C65CAC19C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +174,8 @@
 		1C237C2C1BC8235800A63965 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				1CEE3BBB1BDE82230028B348 /* fmdb */,
+				1CEE3BB41BDE7FA00028B348 /* Resource */,
 				1C7684041BD2B044006E6BA2 /* Composed */,
 				1C7684021BD2AC45006E6BA2 /* YFComposedViewController.swift */,
 				1CC3EFB71BCA617D00314A01 /* NewFuture */,
@@ -159,6 +191,7 @@
 				1CA081371BC9746B00F7BACD /* YFUserAcount.swift */,
 				1C9D2AA41BCD713C009B99BB /* YFStatues.swift */,
 				1C9D2AA61BCD74D8009B99BB /* YFUser.swift */,
+				1CEE3BD61BDE84D60028B348 /* YFStatusDAL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,6 +300,7 @@
 				1C3EE5FF1BC659960069BF55 /* AppDelegate.swift */,
 				1C3EE6061BC659960069BF55 /* Assets.xcassets */,
 				1C3EE60B1BC659960069BF55 /* Info.plist */,
+				1CEE3BD21BDE834E0028B348 /* Header-Bridge.h */,
 			);
 			path = MyWeiBoo;
 			sourceTree = "<group>";
@@ -300,6 +334,7 @@
 				1CA5EEFB1BDBD7D200E95ECF /* NSDateExtension.swift */,
 				1CA5EF3B1BDBEE6500E95ECF /* String + Rex.swift */,
 				1C8129681BDCB37E0017F2A5 /* FFLabel.swift */,
+				1CEE3BB91BDE81FD0028B348 /* SQLiteManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -331,9 +366,46 @@
 			path = Module/NewFuture;
 			sourceTree = "<group>";
 		};
+		1CEE3BB41BDE7FA00028B348 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE3BB51BDE81360028B348 /* tables.sql */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		1CEE3BBB1BDE82230028B348 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE3BBC1BDE82230028B348 /* FMDatabase.h */,
+				1CEE3BBD1BDE82230028B348 /* FMDatabase.m */,
+				1CEE3BBE1BDE82230028B348 /* FMDatabaseAdditions.h */,
+				1CEE3BBF1BDE82230028B348 /* FMDatabaseAdditions.m */,
+				1CEE3BC01BDE82230028B348 /* FMDatabasePool.h */,
+				1CEE3BC11BDE82230028B348 /* FMDatabasePool.m */,
+				1CEE3BC21BDE82230028B348 /* FMDatabaseQueue.h */,
+				1CEE3BC31BDE82230028B348 /* FMDatabaseQueue.m */,
+				1CEE3BC41BDE82230028B348 /* FMDB.h */,
+				1CEE3BC51BDE82230028B348 /* FMResultSet.h */,
+				1CEE3BC61BDE82230028B348 /* FMResultSet.m */,
+				1CEE3BCC1BDE831A0028B348 /* Swift extensions */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		1CEE3BCC1BDE831A0028B348 /* Swift extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE3BCD1BDE831A0028B348 /* FMDatabaseAdditionsVariadic.swift */,
+				1CEE3BCE1BDE831A0028B348 /* FMDatabaseVariadic.swift */,
+			);
+			path = "Swift extensions";
+			sourceTree = "<group>";
+		};
 		2943080367E612FCB6C5B72C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1CEE3BD31BDE83A70028B348 /* libsqlite3.tbd */,
 				BD087CB8C368301DDD53C684 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -460,6 +532,7 @@
 				1C7684011BD237FF006E6BA2 /* YFrefresh.xib in Resources */,
 				1C3EE6071BC659960069BF55 /* Assets.xcassets in Resources */,
 				1C237C3F1BC8235800A63965 /* YFBaseView.storyboard in Resources */,
+				1CEE3BB61BDE81360028B348 /* tables.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,21 +618,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CEE3BD01BDE831A0028B348 /* FMDatabaseVariadic.swift in Sources */,
 				1C237C411BC8235800A63965 /* YFVisitorView.swift in Sources */,
 				1C329CA31BCABA9400CF56F1 /* YFNewFutureController.swift in Sources */,
 				1CA5EF3C1BDBEE6500E95ECF /* String + Rex.swift in Sources */,
+				1CEE3BC71BDE82230028B348 /* FMDatabase.m in Sources */,
 				1C237C3C1BC8235800A63965 /* YFDiscoverController.swift in Sources */,
 				1C9D2AA31BCD5E86009B99BB /* UIView+AutoLayout.swift in Sources */,
+				1CEE3BCB1BDE82230028B348 /* FMResultSet.m in Sources */,
 				1C237C431BC8235800A63965 /* YFProfileController.swift in Sources */,
 				1C9D2AA71BCD74D8009B99BB /* YFUser.swift in Sources */,
 				1CA5EEFC1BDBD7D200E95ECF /* NSDateExtension.swift in Sources */,
+				1CEE3BCA1BDE82230028B348 /* FMDatabaseQueue.m in Sources */,
 				1C237C401BC8235800A63965 /* YFMainController.swift in Sources */,
 				1C76840A1BD3EACF006E6BA2 /* UIBarButtonItem+Extension.swift in Sources */,
+				1CEE3BD71BDE84D60028B348 /* YFStatusDAL.swift in Sources */,
 				1C9D2AAB1BCDD9BD009B99BB /* YFTopView.swift in Sources */,
 				1C7683F91BD01F21006E6BA2 /* YFForwardCell.swift in Sources */,
 				1C8E0CED1BD53B27000BCACB /* YFPhotoCollectionViewCell.swift in Sources */,
 				1C9D2AAD1BCDD9D1009B99BB /* YFButtomview.swift in Sources */,
 				1C237C481BC82F3200A63965 /* YFYFoAuthViewController.swift in Sources */,
+				1CEE3BCF1BDE831A0028B348 /* FMDatabaseAdditionsVariadic.swift in Sources */,
 				1C237C3D1BC8235800A63965 /* YFHomeController.swift in Sources */,
 				1C237C421BC8235800A63965 /* YFMessageController.swift in Sources */,
 				1C81296D1BDCC61C0017F2A5 /* YFWebController.swift in Sources */,
@@ -567,7 +646,9 @@
 				1CA081381BC9746B00F7BACD /* YFUserAcount.swift in Sources */,
 				1C7683FD1BD2373B006E6BA2 /* YFRefreshControl.swift in Sources */,
 				1C8129691BDCB37E0017F2A5 /* FFLabel.swift in Sources */,
+				1CEE3BC81BDE82230028B348 /* FMDatabaseAdditions.m in Sources */,
 				1C9D2AAF1BCDDA2C009B99BB /* YFStateCell.swift in Sources */,
+				1CEE3BBA1BDE81FD0028B348 /* SQLiteManager.swift in Sources */,
 				1CC3EFB91BCA61FB00314A01 /* YFWelcomViewController.swift in Sources */,
 				1C9D2AA51BCD713C009B99BB /* YFStatues.swift in Sources */,
 				1C237C3E1BC8235800A63965 /* YFBaseTableViewController.swift in Sources */,
@@ -578,6 +659,7 @@
 				1C76844A1BD4B285006E6BA2 /* YFPotoBrowserController.swift in Sources */,
 				1C7683FB1BD16A95006E6BA2 /* YFStatusNormalCell.swift in Sources */,
 				1C7684031BD2AC45006E6BA2 /* YFComposedViewController.swift in Sources */,
+				1CEE3BC91BDE82230028B348 /* FMDatabasePool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,7 +791,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.heima-lyf1.MyWeiBoo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyWeiBoo/Header-Bridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -727,7 +809,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.heima-lyf1.MyWeiBoo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyWeiBoo/Header-Bridge.h";
 			};
 			name = Release;
 		};

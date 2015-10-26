@@ -14,9 +14,12 @@ let YFRootViewControollerSwithNotifacation = "YFRootViewControollerSwithNotifaca
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        SQLiteManager.sharedManager
          print(NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!.stringByAppendingString("/account.plist"))
         
         //注册一个通知中心

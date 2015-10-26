@@ -88,6 +88,8 @@ class YFStatues: NSObject {
             /// 判断能否获得字典数组
             if let array = result?["statuses"] as? [[String: AnyObject]] {
                 // 遍历数组，字典转模型
+                YFStatusDAL.saveStatus(array)
+                
                 var list = [YFStatues]()
                 
                 for dict in array {

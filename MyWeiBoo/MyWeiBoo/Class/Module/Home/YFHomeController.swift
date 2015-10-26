@@ -205,6 +205,7 @@ class YFHomeController: YFBaseTableViewController,stateCellDidSelectedLinkDelega
     func stateCellDidSelectedLink(text: String) {
         
         print(text)
+        
         guard let url = NSURL(string: text) else {
         
             print("url错误")
@@ -212,7 +213,7 @@ class YFHomeController: YFBaseTableViewController,stateCellDidSelectedLinkDelega
         }
         //切换控制器
         let vc = YFWebController()
-        vc.url = NSURL(string: text)
+        vc.url = url
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         
