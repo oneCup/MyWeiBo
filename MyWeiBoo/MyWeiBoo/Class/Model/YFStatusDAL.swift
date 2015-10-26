@@ -27,6 +27,30 @@ class YFStatusDAL {
         //5.完成回调
     }
     
+    //MARK:加载缓存数据
+    
+    class func loadCacheData(since_id:Int, max_id: Int) {
+        
+        let userId = YFUserAcount.sharedAcount!.uid!
+        
+        var sql = "SELECT statusId, status, userId FROM T_Status \n" +
+        "WHERE userId = \(userId) \n"
+        
+        //根据参数,调整查询条件
+        if since_id > 0 { //下拉刷新
+            sql += "AND statusId > \(since_id)\n"
+        }else if max_id > 0 { //上拉刷新
+        
+            sql += "AND statusId < \(max_id)\n"
+        
+        }
+        
+        sql += "ORDER BY statusId DESC LIMIT 20;"
+        
+        print(sql)
+        
+    }
+    
     //MARK:保存数据到数据库
     ///保存数据到数据库
     class func saveStatus(array: [[String: AnyObject]]) {

@@ -77,6 +77,9 @@ class YFStatues: NSObject {
      //MARK:字典转模型
       class func loadStatus(since_id:Int,max_id:Int,finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
         
+        //----测试
+        YFStatusDAL.loadCacheData(since_id, max_id: max_id)
+        
         YFNETWorkTools.sharedTools.loadStatus(since_id,max_id: max_id) { (result, error) -> () in
             if(error != nil) {
                 finished(datalist: nil, error: error)
