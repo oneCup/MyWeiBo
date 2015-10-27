@@ -93,6 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.orangeColor()
         
     }
+    //MAEK:清除数据库缓存,在用户推出后台会清理缓存
+    
+     func applicationDidEnterBackground(application: UIApplication) {
+       
+        YFStatusDAL.clearDateCache()
+    }
     
 
     func applicationWillResignActive(application: UIApplication) {
@@ -100,11 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
+   
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }

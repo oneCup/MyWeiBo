@@ -77,10 +77,7 @@ class YFStatues: NSObject {
      //MARK:字典转模型
       class func loadStatus(since_id:Int,max_id:Int,finished:(datalist:[YFStatues]?,error: NSError?) ->()) {
         
-        //----测试
-        YFStatusDAL.loadCacheData(since_id, max_id: max_id)
-        
-        YFNETWorkTools.sharedTools.loadStatus(since_id,max_id: max_id) { (result, error) -> () in
+         YFStatusDAL.loadstatus(since_id,max_id: max_id) { (result, error) -> () in
             if(error != nil) {
                 finished(datalist: nil, error: error)
                 return
@@ -89,12 +86,10 @@ class YFStatues: NSObject {
             //判断是否可以获得字典数
             
             /// 判断能否获得字典数组
-            if let array = result?["statuses"] as? [[String: AnyObject]] {
+            if let array = result{
+                
                 // 遍历数组，字典转模型
-                YFStatusDAL.saveStatus(array)
-                
                 var list = [YFStatues]()
-                
                 for dict in array {
                     list.append(YFStatues(dict: dict))
                 }

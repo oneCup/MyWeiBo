@@ -7,29 +7,72 @@
 //
 
 import Foundation
-
+//设置数据库缓存时间的长度
+private let dbCacheDateTime: NSTimeInterval = 60 // 1* 24 *3600  一般为1天,为方便测试
 class YFStatusDAL {
+    
+    
+    //MARK:清除数据缓存数据
+    class func clearDateCache() {
+        
+        //  1.确定删除缓存日期
+        let date = NSDate(timeIntervalSinceNow: -dbCacheDateTime)
+        //转换日期格式
+        let df = NSDateFormatter()
+        df.locale = NSLocale(localeIdentifier:"en")
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = df.stringFromDate(date)
+        print(dateString)
+        //  2.执行清除缓存的代码
+        let sql = "DELETE FROM T_Status WHERE createTime < '\(dateString)'"
+        
+        SQLiteManager.sharedManager.queque.inDatabase { (db) -> Void in
+            
+            db.executeUpdate(sql)
+            print("删除成功")
+        }
+        
+    }
     
     ///  数据库访问加载
     
     ///  从数据库&网络中加载数据
     
-    class func loadstatus() {
+    class func loadstatus(since_id:Int, max_id: Int,finished:(arry: [[String: AnyObject]]?,error:NSError?)->()) {
         
         //1.检查本地是否有缓存数据
-        
-        //2.如果有缓存数据,直接返回缓存数据
-        
-        //3.如果没有缓存数据,从网络中加载数据
-        
-        //4.加载好好缓存数据后,保存到数据库中
-        
-        //5.完成回调
-    }
+        loadCacheData(since_id, max_id: max_id) { (arry) -> () in
+            if (arry?.count ?? 0) > 0 {
+                
+                 //2.如果有缓存数据,直接返回缓存数据
+                finished(arry: arry,error: nil)
+                return
+            }
+            
+             //3.如果没有缓存数据,从网络中加载数据
+            YFNETWorkTools.sharedTools.loadStatus(since_id, max_id: max_id, finished: { (result, error) -> () in
+                
+                /// 判断能否获得字典数组
+                if let array = result?["statuses"] as? [[String: AnyObject]] {
+                    
+                     //4.加载好好缓存数据后,保存到数据库中
+                    saveStatus(array)
+                      //5.完成回调
+                    finished(arry: array, error: nil)
+                }else {
+                    
+                finished(arry: nil, error: error)
+                }
+                
+            })
+            
+        }
+     }
     
     //MARK:加载缓存数据
     
-    class func loadCacheData(since_id:Int, max_id: Int) {
+    
+    class func loadCacheData(since_id:Int, max_id: Int,finished:(arry: [[String: AnyObject]]?)->()) {
         
         let userId = YFUserAcount.sharedAcount!.uid!
         
@@ -48,6 +91,34 @@ class YFStatusDAL {
         sql += "ORDER BY statusId DESC LIMIT 20;"
         
         print(sql)
+        //执行sql
+        SQLiteManager.sharedManager.queque.inDatabase { (db) -> Void in
+            
+            guard let rs = db.executeQuery(sql) else {
+                
+                //空数据的回调
+                finished(arry: nil)
+            
+                return
+            }
+            //生成查询结果-返回什么样的结果 ->字典数组
+            var arry = [[String: AnyObject]]()
+            
+            //遍历
+            while rs.next() {
+                let jsonString = rs.stringForColumn("status")
+                print(jsonString)
+                //反序列化
+                let dict = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions(rawValue: 0))
+                //将字典插入数组
+                arry.append(dict as! [String: AnyObject])
+            }
+            
+            //通过回调返回数组
+            
+            finished(arry: arry)
+        }
+        
         
     }
     
@@ -77,8 +148,6 @@ class YFStatusDAL {
                 //3>插入数据到数据库
                 
                 if  !db.executeUpdate(sql, statusID,jsonString,userId) {
-                
-                
                     //执行回滚,返回到上一层的正确的程序中
                     rollback.memory = true
                     break
